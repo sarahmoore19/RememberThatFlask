@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from app.models import db, User, List, Task
 from flask_login import current_user, login_required
 from .auth_routes import validation_errors_to_error_messages
+from ..forms import ListForm
 
 lists = Blueprint('lists', __name__)
 
@@ -33,18 +34,37 @@ def oneList(id):
 @lists.route('/', methods=['POST'])
 @login_required
 def createList():
-  pass
+  form = ListForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    new_list = List (
+      name = form.data['name'],
+      user_id = current_user.id
+    )
+    db.session.add(new_list)
+    db.session.commit()
+    return new_list.to_dict()
+  return "Bad Data"
+
 
 # rename a list
 @lists.route('/<int:id>', methods=['PUT'])
 @login_required
 def renameList(id):
+  form = ListForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
   list = List.query.get(id)
-  list.name = 'form data here'
-  db.session.commit()
+  if form.validate_on_submit():
+    list.name = form.data['name']
+    db.session.commit()
+    return list.to_dict()
+  return "Bad Data"
 
 # delete list
 @lists.route('/<int:id>', methods=['DELETE'])
 @login_required
 def deleteList(id):
-  pass
+  list = List.query.get(id)
+  db.session.delete(list)
+  db.session.commit()
+  return f'List Deleted {id}'

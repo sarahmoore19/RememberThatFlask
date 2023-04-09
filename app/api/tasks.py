@@ -1,7 +1,9 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from app.models import db, User, List, Task
 from flask_login import current_user, login_required
 from .auth_routes import validation_errors_to_error_messages
+
+from ..forms import TaskForm
 
 tasks = Blueprint('tasks', __name__)
 
@@ -26,22 +28,48 @@ def oneTask(id):
 @tasks.route('/', methods=['POST'])
 @login_required
 def createTask():
-  pass
+  form = TaskForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    new_task = Task (
+      name = form.data['name'],
+      due_date = form.data['due_date'],
+      user_id = current_user.id,
+      list_id = form.data['list_id'],
+      completed = form.data['completed']
+    )
+    db.session.add(new_task)
+    db.session.commit()
+    return new_task.to_dict()
+  return "Bad Data"
 
 # rename a task
 @tasks.route('/<int:id>', methods=['PUT'])
 @login_required
 def renameTask(id):
+  form = TaskForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
   task = Task.query.get(id)
-  task.name = 'form data here'
+  if form.validate_on_submit():
+    print(form.data)
+    if(form.data['name']):
+      task.name = form.data['name']
+      print(f'name')
+    else:
+      print(f'completed')
+      task.completed = form.data['completed']
+    db.session.commit()
+    return task.to_dict()
+  return "Bad Data"
 
 # change task from incomplete to complete or vice versa
-@tasks.route('/<int:id>', methods=['PUT'])
-@login_required
-def completeOrIncompleteTask(id):
-  task = Task.query.get(id)
-  task.completed = not task.completed
-  db.session.commit()
+# @tasks.route('/<int:id>', methods=['PUT'])
+# @login_required
+# def completeOrIncompleteTask(id):
+#   task = Task.query.get(id)
+#   task.completed = not task.completed
+#   db.session.commit()
+#   return task.to_dict()
 
 # add a task to a list
 @tasks.route('/<int:task_id>/list', methods=['PUT'])
@@ -50,9 +78,13 @@ def addTasktoList(list_id, task_id):
   task = Task.query.get(task_id)
   task.list_id = list_id
   db.session.commit()
+  return task.to_dict()
 
 # delete task
 @tasks.route('/<int:id>', methods=['DELETE'])
 @login_required
 def deleteTask(id):
-  pass
+  task = Task.query.get(id)
+  db.session.delete(task)
+  db.session.commit()
+  return f'Task Deleted {id}'
