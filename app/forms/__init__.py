@@ -3,4 +3,3 @@ from .signup_form import SignUpForm
 
 from .task_form import TaskForm
 from .list_form import ListForm
-from .search_form import SearchForm
