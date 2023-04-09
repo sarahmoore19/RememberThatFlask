@@ -21,7 +21,8 @@ def allTasks():
 def oneTask(id):
   task = Task.query.get(id)
   taskDict = task.to_dict()
-  taskDict['list'] = task.list.to_dict()
+  if task.list:
+    taskDict['list'] = task.list.to_dict()
   return taskDict
 
 # create a task
@@ -51,25 +52,19 @@ def renameTask(id):
   form['csrf_token'].data = request.cookies['csrf_token']
   task = Task.query.get(id)
   if form.validate_on_submit():
-    print(form.data)
-    if(form.data['name']):
-      task.name = form.data['name']
-      print(f'name')
-    else:
-      print(f'completed')
-      task.completed = form.data['completed']
+    task.name = form.data['name']
     db.session.commit()
     return task.to_dict()
   return "Bad Data"
 
 # change task from incomplete to complete or vice versa
-# @tasks.route('/<int:id>', methods=['PUT'])
-# @login_required
-# def completeOrIncompleteTask(id):
-#   task = Task.query.get(id)
-#   task.completed = not task.completed
-#   db.session.commit()
-#   return task.to_dict()
+@tasks.route('/<int:id>/completed', methods=['PUT'])
+@login_required
+def completeOrIncompleteTask(id):
+  task = Task.query.get(id)
+  task.completed = not task.completed
+  db.session.commit()
+  return task.to_dict()
 
 # add a task to a list
 @tasks.route('/<int:task_id>/list', methods=['PUT'])

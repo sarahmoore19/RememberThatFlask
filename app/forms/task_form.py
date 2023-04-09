@@ -3,9 +3,9 @@ from wtforms import StringField, IntegerField, DateField, BooleanField
 from wtforms.validators import DataRequired
 from app.models import Task
 
+v = [DataRequired()]
 
 class TaskForm(FlaskForm):
-    name = StringField('name', validators=[DataRequired()])
+    name = StringField('name', v)
     due_date = DateField('due_date')
     list_id = IntegerField('list_id')
-    completed = BooleanField('completed')
