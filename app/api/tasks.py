@@ -14,6 +14,11 @@ def allTasks():
   id = current_user.id
   tasks = Task.query.filter(Task.user_id == id).all()
   tasksList = [task.to_dict() for task in tasks]
+  tasksList['numCompleted'] = 0
+  tasksList['numNotCompleted'] = 0
+  for task in tasks:
+    if task.completed == True:  tasksList['numCompleted'] += 1
+    else: tasksList['numNotCompleted'] += 1
   return tasksList
 
 # get a single task
@@ -80,6 +85,7 @@ def addTasktoList(list_id, task_id):
 @login_required
 def deleteTask(id):
   task = Task.query.get(id)
+  taskDict = task.to_dict()
   db.session.delete(task)
   db.session.commit()
-  return f'Task Deleted {id}'
+  return taskDict

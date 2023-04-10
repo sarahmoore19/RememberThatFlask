@@ -7,7 +7,7 @@ function MainPage() {
   return (
     <div className="flx mrg20p">
       <LeftPanel />
-      <TaskList />
+      <TaskList/>
       <RightPanel />
     </div>
   )

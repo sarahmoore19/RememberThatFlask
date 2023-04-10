@@ -10,3 +10,7 @@
 .border-red {
   border: 2px red solid;
 }
+
+li {
+list-style-type: none;
+}
