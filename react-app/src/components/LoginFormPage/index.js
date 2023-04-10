@@ -21,7 +21,7 @@ function LoginFormPage() {
     if (data) {
       setErrors(data);
     } else {
-      history.push('/app')
+      history.push('/app/all')
     }
   };
 
