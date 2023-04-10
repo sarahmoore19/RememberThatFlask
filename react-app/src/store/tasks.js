@@ -60,7 +60,7 @@ const deleteTask1 = (taskId) => {
 
 // thunk
 export const allTasks = () => async (dispatch) => {
-  const response = await csrfFetch(`/api/tasks/all`)
+  const response = await fetch(`/api/tasks/all`)
   if (response.ok) {
     const data = await response.json();
     dispatch(allTasks1(data));
@@ -69,7 +69,7 @@ export const allTasks = () => async (dispatch) => {
 };
 
 export const singleTask = (taskId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/tasks/${taskId}`)
+  const response = await fetch(`/api/tasks/${taskId}`)
   if (response.ok) {
     const data = await response.json();
     dispatch(singleTask1(data));
@@ -78,20 +78,20 @@ export const singleTask = (taskId) => async (dispatch) => {
 };
 
 export const createTask = (formData) => async (dispatch) => {
-  const response = await csrfFetch(`/api/tasks`, {
+  const response = await fetch(`/api/tasks`, {
     method: 'POST',
     body: JSON.stringify(formData)
   })
   if (response.ok) {
     const data = await response.json();
     dispatch(createTask1(data));
-    dispatch(singleTask1(taskId))
+    dispatch(singleTask1(data.id))
   };
   return response
 };
 
 export const renameTask = (taskId, formData) => async (dispatch) => {
-  const response = await csrfFetch(`/api/tasks/${taskId}`, {
+  const response = await fetch(`/api/tasks/${taskId}`, {
     method: 'PUT',
     body: JSON.stringify(formData)
   })
@@ -104,7 +104,7 @@ export const renameTask = (taskId, formData) => async (dispatch) => {
 };
 
 export const updateTaskList = (taskId, formData) => async (dispatch) => {
-  const response = await csrfFetch(`/api/tasks/${taskId}/list`, {
+  const response = await fetch(`/api/tasks/${taskId}/list`, {
     method: 'PUT',
     body: JSON.stringify(formData)
   })
@@ -117,7 +117,7 @@ export const updateTaskList = (taskId, formData) => async (dispatch) => {
 };
 
 export const changeCompleteStatus = (taskId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/tasks/${taskId}/completed`, {
+  const response = await fetch(`/api/tasks/${taskId}/completed`, {
     method: 'PUT'
   })
   if (response.ok) {
@@ -129,7 +129,7 @@ export const changeCompleteStatus = (taskId) => async (dispatch) => {
 };
 
 export const deleteTask = (taskId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/tasks/${taskId}`, {
+  const response = await fetch(`/api/tasks/${taskId}`, {
     method: 'DELETE'
   })
   if (response.ok) {
