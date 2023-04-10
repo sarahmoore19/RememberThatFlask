@@ -38,7 +38,6 @@ def createTask():
       due_date = form.data['due_date'],
       user_id = current_user.id,
       list_id = form.data['list_id'],
-      completed = form.data['completed']
     )
     db.session.add(new_task)
     db.session.commit()
