@@ -12,7 +12,17 @@ function Navigation({ isLoaded }){
 			<li>
 				<NavLink exact to="/">Home</NavLink>
 			</li>
-			{isLoaded && (
+			{isLoaded && !sessionUser && (
+				<li>
+					<button>
+						<NavLink to='/login'>Login</NavLink>
+					</button>
+					<button>
+						<NavLink to='/signup'>Sign up for Free</NavLink>
+					</button>
+				</li>
+			)}
+			{isLoaded && sessionUser && (
 				<li>
 					<ProfileButton user={sessionUser} />
 				</li>
