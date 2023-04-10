@@ -8,10 +8,10 @@ const UPDATETASKLIST = 'tasks/UPDATELIST';
 const UPDATECOMPLETEDSTATUS = 'tasks/UPDATECOMPLETED';
 const DELETETASK = 'tasks/DELETE';
 
-const allTasks1 = (arr) => {
+const allTasks1 = (obj) => {
   return {
     type: SETALLTASKS,
-    arr
+    obj
   };
 };
 
@@ -158,7 +158,9 @@ const tasksReducer = (state = initialState, action) => {
   switch (action.type) {
     case SETALLTASKS:
       let newState1 = { singleTask: { ...state.allTasks }, allTasks: {} };
-      action.arr.forEach(s => newState1.allTasks[s.id] = s);
+      action.obj.tasks.forEach(s => newState1.allTasks[s.id] = s);
+      newState1.allTasks.numCompleted = action.obj.numCompleted
+      newState1.allTasks.numNotCompleted = action.obj.numNotCompleted
       return newState1;
     case SETSINGLETASK:
       // we do not know if task.list will copy or not... if problems arise we can adjust

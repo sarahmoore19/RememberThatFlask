@@ -20,11 +20,11 @@ function TaskList({ context }) {
   }, [dispatch])
 
   if (!tasks) return null
-  if (list.id != listId) return null
 
   return (
     <div>
       <div>
+      <h2>{context == 'list' ? list.name : 'All Tasks'}</h2>
       <ul>
       {tasks.map(t => (
        <li
