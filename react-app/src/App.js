@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import MainPage from "./components/MainPage";
+import TaskList from "./components/TaskList";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path={["/app", "/app/list/:listId"]}>
+          <Route path={["/app", '/app/all']}>
             <MainPage />
           </Route>
         </Switch>

@@ -15,11 +15,6 @@ function LeftPanel() {
     dispatch(listActions.allLists())
   }, [dispatch])
 
-  function getTaskAndListInfo() {
-    dispatch(taskActions.allTasks)
-    dispatch(listActions.singleList)
-  }
-
   return (
   <div>
     <div>
@@ -32,16 +27,18 @@ function LeftPanel() {
     <div className="border-red">
       <p>Inbox</p>
       <Link
-      to={'app/tasks/all'}
+      to={'/app/all'}
       >All Tasks</Link>
     </div>
     <ul className="border-red">
       <li>List</li>
       {arr.map(o => (
-       <li>
-        <button onClick={getTaskAndListInfo}>
+       <li
+       key={o.id}>
+          <Link
+          to={`/app/lists/${o.id}`}>
           {o.name}
-        </button>
+          </Link>
        </li>
       ))}
     </ul>

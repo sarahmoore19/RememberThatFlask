@@ -6,24 +6,17 @@ import { Route, Switch } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 
 function MainPage() {
-  const { listId } = useParams();
-  console.log(listId)
   return (
     <div className="flx mrg20p">
-
-      {/* <LeftPanel />
-      <TaskList/>
-      <RightPanel />
-      <div>listID: {listId}</div> */}
       <LeftPanel />
       <Switch>
-        <Route path="/list/:listId" >
-          <div>listID: {listId}</div>
-          <TaskList/>
-          <RightPanel />
-
-        </Route>
-
+      <Route path="/app/all" >
+        <div>ALL TASK ROUTE</div>
+      </Route>
+      <Route path="/app/lists/:listId" >
+        <div>LIST ROUTE</div>
+        <TaskList/>
+      </Route>
       </Switch>
     </div>
   )
