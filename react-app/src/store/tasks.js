@@ -4,7 +4,8 @@ const SETALLTASKS = 'tasks/ALL';
 const SETSINGLETASK = 'tasks/SINGLE';
 const CREATETASK = 'tasks/CREATE';
 const UPDATETASKNAME = 'tasks/UPDATENAME';
-const UPDATECOMPLETESTATUS = 'tasks/UPDATECOMPLETE';
+const UPDATETASKLIST = 'tasks/UPDATELIST';
+const UPDATECOMPLETEDSTATUS = 'tasks/UPDATECOMPLETED';
 const DELETETASK = 'tasks/DELETE';
 
 const allTasks1 = (arr) => {
@@ -21,6 +22,12 @@ const singleTask1 = (obj) => {
   };
 };
 
+const createTask1 = (obj) => {
+  return {
+    type: CREATETASK,
+    obj
+  };
+};
 
 const renameTask1 = (obj) => {
   return {
@@ -31,14 +38,14 @@ const renameTask1 = (obj) => {
 
 const updateCompleteStatus1 = (obj) => {
   return {
-    type: UPDATECOMPLETESTATUS,
+    type: UPDATECOMPLETEDSTATUS,
     obj
   };
 };
 
-const createTask1 = (obj) => {
+const updateTaskList1 = (obj) => {
   return {
-    type: CREATETASK,
+    type: UPDATETASKLIST,
     obj
   };
 };
@@ -96,6 +103,19 @@ export const renameTask = (taskId, formData) => async (dispatch) => {
   return response
 };
 
+export const updateTaskList = (taskId, formData) => async (dispatch) => {
+  const response = await csrfFetch(`/api/tasks/${taskId}/list`, {
+    method: 'PUT',
+    body: JSON.stringify(formData)
+  })
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateTaskList1(data));
+    dispatch(singleTask1(taskId))
+  };
+  return response
+};
+
 export const changeCompleteStatus = (taskId) => async (dispatch) => {
   const response = await csrfFetch(`/api/tasks/${taskId}/completed`, {
     method: 'PUT'
@@ -141,22 +161,27 @@ const tasksReducer = (state = initialState, action) => {
       let task1 = action.obj
       newState3.allTasks[task1.id] = { ...task1 };
       return newState3
-    case UPDATECOMPLETESTATUS:
+    case UPDATECOMPLETEDSTATUS:
       let newState4 = { allTasks: { ...state.allTasks }, singleTask: {} };
       let task2 = action.obj
       newState4.allTasks[task2.id] = { ...task2 };
       return newState4
-    case CREATETASK:
+    case UPDATETASKLIST:
       let newState5 = { allTasks: { ...state.allTasks }, singleTask: {} };
       let task3 = action.obj
       newState5.allTasks[task3.id] = { ...task3 };
       return newState5
-    case DELETETASK:
-      let newState6 = { allTasks: { ...state.allTasks }, singleTask: {...state.allTasks} };
-      let task4 = action.taskId
-      delete newState6.allTasks[task4.id]
-      if (newState6.singleTask.id == task4.id) newState6.singleTask = {}
+    case CREATETASK:
+      let newState6 = { allTasks: { ...state.allTasks }, singleTask: {} };
+      let task4 = action.obj
+      newState6.allTasks[task4.id] = { ...task4 };
       return newState6
+    case DELETETASK:
+      let newState7 = { allTasks: { ...state.allTasks }, singleTask: {...state.singleTask} };
+      let task5 = action.taskId
+      delete newState7.allTasks[task5.id]
+      if (newState7.singleTask.id == task5.id) newState7.singleTask = {}
+      return newState7
 
     default:
       return state;

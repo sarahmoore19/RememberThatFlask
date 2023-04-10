@@ -2,7 +2,10 @@
 
 const SETALLLISTS = 'lists/ALL';
 const SETSINGLELIST = 'lists/SINGLE';
-const UPDATELISTNAME = 'tasks/UPDATENAME';
+const CREATELIST = 'lists/CREATE';
+const UPDATELISTNAME = 'lists/UPDATENAME';
+const DELETELIST = 'lists/DELETE';
+
 
 const allLists1 = (arr) => {
   return {
@@ -25,6 +28,20 @@ const renameList1 = (obj) => {
   };
 };
 
+const createList1 = (obj) => {
+  return {
+    type: CREATELIST,
+    obj
+  };
+};
+
+const deleteList1 = (listId) => {
+  return {
+    type: DELETELIST,
+    listId
+  };
+};
+
 export const allLists = () => async (dispatch) => {
   const response = await csrfFetch(`/api/lists/all`)
   if (response.ok) {
@@ -43,16 +60,40 @@ export const singleList = (listId) => async (dispatch) => {
   return response
 };
 
+export const createlist = (formData) => async (dispatch) => {
+  const response = await csrfFetch(`/api/lists`, {
+    method: 'POST',
+    body: JSON.stringify(formData)
+  })
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(createList1(data));
+    dispatch(singleList1(listId))
+  };
+  return response
+};
 
-export const renameList = (listId, name) => async (dispatch) => {
+
+export const renameList = (listId, formData) => async (dispatch) => {
   const response = await csrfFetch(`/api/lists/${listId}`, {
     method: 'PUT',
-    body: JSON.stringify(name)
+    body: JSON.stringify(formData)
   })
   if (response.ok) {
     const data = await response.json();
     dispatch(renameList1(data));
     dispatch(singleList1(listId))
+  };
+  return response
+};
+
+export const deletelist = (listId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/lists/${listId}`, {
+    method: 'DELETE'
+  })
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(deleteList1(listId));
   };
   return response
 };
@@ -75,10 +116,20 @@ const listReducer = (state = initialState, action) => {
       return newState2;
     case UPDATELISTNAME:
       let newState3 = { allLists: { ...state.allLists }, singleList: {} };
-      let list = action.obj
-      newState3.allLists.list.id = { ...list };
+      let list1 = action.obj
+      newState3.allLists[list1.id] = { ...list1 };
       return newState3
-
+    case CREATELIST:
+      let newState5 = { alllists: { ...state.allLists }, singleList: {} };
+      let list2 = action.obj
+      newState5.alllists[list2.id] = { ...list2 };
+      return newState5
+    case DELETELIST:
+      let newState6 = { allLists: { ...state.allLists }, singleList: {...state.singleList} };
+      let list3 = action.listId
+      delete newState6.allLists[list3.id]
+      if (newState6.singleList.id == list43id) newState6.singleList = {}
+      return newState6
     default:
       return state;
   }

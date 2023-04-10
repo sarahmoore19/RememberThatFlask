@@ -7,6 +7,7 @@ from ..forms import TaskForm
 
 tasks = Blueprint('tasks', __name__)
 
+# get all tasks
 @tasks.route('/all')
 @login_required
 def allTasks():
