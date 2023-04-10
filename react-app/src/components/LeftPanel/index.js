@@ -15,6 +15,11 @@ function LeftPanel() {
     dispatch(listActions.allLists())
   }, [dispatch])
 
+  function getTaskAndListInfo() {
+    dispatch(taskActions.allTasks)
+    dispatch(listActions.singleList)
+  }
+
   return (
   <div>
     <div>
@@ -34,7 +39,9 @@ function LeftPanel() {
       <li>List</li>
       {arr.map(o => (
        <li>
-        {o.name}
+        <button onClick={getTaskAndListInfo}>
+          {o.name}
+        </button>
        </li>
       ))}
     </ul>
