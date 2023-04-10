@@ -8,7 +8,6 @@ function LeftPanel() {
 
   const dispatch = useDispatch();
   const lists = useSelector(state => state.lists.allLists);
-  console.log('=================', lists)
   let arr = Object.values(lists);
 
   useEffect(() => {
