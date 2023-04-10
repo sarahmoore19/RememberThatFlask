@@ -80,6 +80,9 @@ export const singleTask = (taskId) => async (dispatch) => {
 export const createTask = (formData) => async (dispatch) => {
   const response = await fetch(`/api/tasks`, {
     method: 'POST',
+    headers: {
+			"Content-Type": "application/json",
+		},
     body: JSON.stringify(formData)
   })
   if (response.ok) {
@@ -93,6 +96,9 @@ export const createTask = (formData) => async (dispatch) => {
 export const renameTask = (taskId, formData) => async (dispatch) => {
   const response = await fetch(`/api/tasks/${taskId}`, {
     method: 'PUT',
+    headers: {
+			"Content-Type": "application/json",
+		},
     body: JSON.stringify(formData)
   })
   if (response.ok) {
@@ -106,6 +112,9 @@ export const renameTask = (taskId, formData) => async (dispatch) => {
 export const updateTaskList = (taskId, formData) => async (dispatch) => {
   const response = await fetch(`/api/tasks/${taskId}/list`, {
     method: 'PUT',
+    headers: {
+			"Content-Type": "application/json",
+		},
     body: JSON.stringify(formData)
   })
   if (response.ok) {

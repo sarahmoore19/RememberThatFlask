@@ -63,6 +63,9 @@ export const singleList = (listId) => async (dispatch) => {
 export const createlist = (formData) => async (dispatch) => {
   const response = await fetch(`/api/lists`, {
     method: 'POST',
+    headers: {
+			"Content-Type": "application/json",
+		},
     body: JSON.stringify(formData)
   })
   if (response.ok) {
@@ -77,6 +80,9 @@ export const createlist = (formData) => async (dispatch) => {
 export const renameList = (listId, formData) => async (dispatch) => {
   const response = await fetch(`/api/lists/${listId}`, {
     method: 'PUT',
+    headers: {
+			"Content-Type": "application/json",
+		},
     body: JSON.stringify(formData)
   })
   if (response.ok) {
