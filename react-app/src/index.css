@@ -1,1 +1,12 @@
 /* TODO Add site wide styles */
+.flx {
+  display: flex;
+}
+
+.mrg20p {
+  margin-right: 20px;
+}
+
+.border-red {
+  border: 2px red solid;
+}
