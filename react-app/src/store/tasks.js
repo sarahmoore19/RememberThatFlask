@@ -50,10 +50,10 @@ const updateTaskList1 = (obj) => {
   };
 };
 
-const deleteTask1 = (taskId) => {
+const deleteTask1 = (obj) => {
   return {
     type: DELETETASK,
-    taskId
+    obj
   };
 };
 
@@ -143,7 +143,7 @@ export const deleteTask = (taskId) => async (dispatch) => {
   })
   if (response.ok) {
     const data = await response.json();
-    dispatch(deleteTask1(taskId));
+    dispatch(deleteTask1(data));
   };
   return response
 };
@@ -173,6 +173,14 @@ const tasksReducer = (state = initialState, action) => {
     case UPDATECOMPLETEDSTATUS:
       let newState4 = { allTasks: { ...state.allTasks }, singleTask: {} };
       let task2 = action.obj
+      if (task2.completed) {
+        newState4.allTasks.numCompleted += 1
+        newState4.allTasks.numNotCompleted -= 1
+      }
+      else {
+        newState4.allTasks.numCompleted -= 1
+        newState4.allTasks.numNotCompleted += 1
+      }
       newState4.allTasks[task2.id] = { ...task2 };
       return newState4
     case UPDATETASKLIST:
@@ -182,16 +190,18 @@ const tasksReducer = (state = initialState, action) => {
       return newState5
     case CREATETASK:
       let newState6 = { allTasks: { ...state.allTasks }, singleTask: {} };
+      newState6.allTasks.numNotCompleted += 1
       let task4 = action.obj
       newState6.allTasks[task4.id] = { ...task4 };
       return newState6
     case DELETETASK:
       let newState7 = { allTasks: { ...state.allTasks }, singleTask: {...state.singleTask} };
-      let task5 = action.taskId
+      let task5 = action.obj
+      if (task5.completed) newState7.allTasks.numCompleted -= 1
+      else newState7.allTasks.numNotCompleted -= 1
       delete newState7.allTasks[task5.id]
       if (newState7.singleTask.id == task5.id) newState7.singleTask = {}
       return newState7
-
     default:
       return state;
   }
