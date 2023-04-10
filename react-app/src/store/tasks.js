@@ -1,18 +1,20 @@
-//todo update name, add task to list, create list, delete list
+//todo add task to list, create task, delete task
 
 const SETALLTASKS = 'tasks/ALL';
 const SETSINGLETASK = 'tasks/SINGLE';
+const CREATETASK = 'tasks/CREATE';
 const UPDATETASKNAME = 'tasks/UPDATENAME';
 const UPDATECOMPLETESTATUS = 'tasks/UPDATECOMPLETE';
+const DELETETASK = 'tasks/DELETE';
 
-const getAllTasks = (arr) => {
+const allTasks1 = (arr) => {
   return {
     type: SETALLTASKS,
     arr
   };
 };
 
-const getSingleTask = (obj) => {
+const singleTask1 = (obj) => {
   return {
     type: SETSINGLETASK,
     obj
@@ -20,17 +22,31 @@ const getSingleTask = (obj) => {
 };
 
 
-const renameATask = (obj) => {
+const renameTask1 = (obj) => {
   return {
     type: UPDATETASKNAME,
     obj
   };
 };
 
-const updatecompletestatus = (obj) => {
+const updateCompleteStatus1 = (obj) => {
   return {
     type: UPDATECOMPLETESTATUS,
     obj
+  };
+};
+
+const createTask1 = (obj) => {
+  return {
+    type: CREATETASK,
+    obj
+  };
+};
+
+const deleteTask1 = (taskId) => {
+  return {
+    type: DELETETASK,
+    taskId
   };
 };
 
@@ -40,7 +56,7 @@ export const allTasks = () => async (dispatch) => {
   const response = await csrfFetch(`/api/tasks/all`)
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAllTasks(data));
+    dispatch(allTasks1(data));
   };
   return response
 };
@@ -49,36 +65,59 @@ export const singleTask = (taskId) => async (dispatch) => {
   const response = await csrfFetch(`/api/tasks/${taskId}`)
   if (response.ok) {
     const data = await response.json();
-    dispatch(getSingleTask(data));
+    dispatch(singleTask1(data));
   };
   return response
 };
 
-export const renameTask = (taskId, name) => async (dispatch) => {
-  const response = await csrfFetch(`/api/tasks/${taskId}`, {
-    method: 'PUT',
-    body: JSON.stringify(name)
+export const createTask = (formData) => async (dispatch) => {
+  const response = await csrfFetch(`/api/tasks`, {
+    method: 'POST',
+    body: JSON.stringify(formData)
   })
   if (response.ok) {
     const data = await response.json();
-    dispatch(renameATask(data));
-    dispatch(singleTask(taskId))
+    dispatch(createTask1(data));
+    dispatch(singleTask1(taskId))
   };
   return response
 };
 
-export const changecompletestatus = (taskId) => async (dispatch) => {
+export const renameTask = (taskId, formData) => async (dispatch) => {
+  const response = await csrfFetch(`/api/tasks/${taskId}`, {
+    method: 'PUT',
+    body: JSON.stringify(formData)
+  })
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(renameTask1(data));
+    dispatch(singleTask1(taskId))
+  };
+  return response
+};
+
+export const changeCompleteStatus = (taskId) => async (dispatch) => {
   const response = await csrfFetch(`/api/tasks/${taskId}/completed`, {
     method: 'PUT'
   })
   if (response.ok) {
     const data = await response.json();
-    dispatch(updatecompletestatus(data));
-    dispatch(singleTask(taskId))
+    dispatch(updateCompleteStatus1(data));
+    dispatch(singleTask1(taskId))
   };
   return response
 };
 
+export const deleteTask = (taskId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/tasks/${taskId}`, {
+    method: 'DELETE'
+  })
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(deleteTask1(taskId));
+  };
+  return response
+};
 
 
 const initialState = {
@@ -99,14 +138,25 @@ const tasksReducer = (state = initialState, action) => {
       return newState2;
     case UPDATETASKNAME:
       let newState3 = { allTasks: { ...state.allTasks }, singleTask: {} };
-      let task = action.obj
-      newState3.allTasks.task.id = { ...task };
+      let task1 = action.obj
+      newState3.allTasks[task1.id] = { ...task1 };
       return newState3
     case UPDATECOMPLETESTATUS:
       let newState4 = { allTasks: { ...state.allTasks }, singleTask: {} };
-      let task1 = action.obj
-      newState4.allTasks.task1.id = { ...task1 };
+      let task2 = action.obj
+      newState4.allTasks[task2.id] = { ...task2 };
       return newState4
+    case CREATETASK:
+      let newState5 = { allTasks: { ...state.allTasks }, singleTask: {} };
+      let task3 = action.obj
+      newState5.allTasks[task3.id] = { ...task3 };
+      return newState5
+    case DELETETASK:
+      let newState6 = { allTasks: { ...state.allTasks }, singleTask: {...state.allTasks} };
+      let task4 = action.taskId
+      delete newState6.allTasks[task4.id]
+      if (newState6.singleTask.id == task4.id) newState6.singleTask = {}
+      return newState6
 
     default:
       return state;
