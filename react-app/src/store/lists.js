@@ -43,7 +43,7 @@ const deleteList1 = (listId) => {
 };
 
 export const allLists = () => async (dispatch) => {
-  const response = await csrfFetch(`/api/lists/all`)
+  const response = await fetch(`/api/lists/all`)
   if (response.ok) {
     const data = await response.json();
     dispatch(allLists1(data));
@@ -52,7 +52,7 @@ export const allLists = () => async (dispatch) => {
 };
 
 export const singleList = (listId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/lists/${listId}`)
+  const response = await fetch(`/api/lists/${listId}`)
   if (response.ok) {
     const data = await response.json();
     dispatch(singleList1(data));
@@ -61,22 +61,28 @@ export const singleList = (listId) => async (dispatch) => {
 };
 
 export const createlist = (formData) => async (dispatch) => {
-  const response = await csrfFetch(`/api/lists`, {
+  const response = await fetch(`/api/lists`, {
     method: 'POST',
+    headers: {
+			"Content-Type": "application/json",
+		},
     body: JSON.stringify(formData)
   })
   if (response.ok) {
     const data = await response.json();
     dispatch(createList1(data));
-    dispatch(singleList1(listId))
+    dispatch(singleList1(data.id))
   };
   return response
 };
 
 
 export const renameList = (listId, formData) => async (dispatch) => {
-  const response = await csrfFetch(`/api/lists/${listId}`, {
+  const response = await fetch(`/api/lists/${listId}`, {
     method: 'PUT',
+    headers: {
+			"Content-Type": "application/json",
+		},
     body: JSON.stringify(formData)
   })
   if (response.ok) {
@@ -88,7 +94,7 @@ export const renameList = (listId, formData) => async (dispatch) => {
 };
 
 export const deletelist = (listId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/lists/${listId}`, {
+  const response = await fetch(`/api/lists/${listId}`, {
     method: 'DELETE'
   })
   if (response.ok) {
@@ -128,7 +134,7 @@ const listReducer = (state = initialState, action) => {
       let newState6 = { allLists: { ...state.allLists }, singleList: {...state.singleList} };
       let list3 = action.listId
       delete newState6.allLists[list3.id]
-      if (newState6.singleList.id == list43id) newState6.singleList = {}
+      if (newState6.singleList.id == list3.id) newState6.singleList = {}
       return newState6
     default:
       return state;

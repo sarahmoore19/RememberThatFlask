@@ -8,7 +8,7 @@ const setSearchResults = (array) => {
 };
 
  export const allSearch = (query) => async (dispatch) => {
-  const response = await csrfFetch(`/api/search?search=${query}`)
+  const response = await fetch(`/api/search?search=${query}`)
   if (response.ok) {
     const data = await response.json();
     dispatch(setSearchResults(data));
