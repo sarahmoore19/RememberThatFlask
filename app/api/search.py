@@ -6,7 +6,7 @@ from .auth_routes import validation_errors_to_error_messages
 
 search = Blueprint('search', __name__)
 
-@search.route('/')
+@search.route('')
 @login_required
 def allTasksSearch():
   id = current_user.id
@@ -17,10 +17,10 @@ def allTasksSearch():
   .filter(Task.name.like(f'%{search}%'))
   .all())
   taskSearch = {}
-  taskSearch.tasks = [task.to_dict() for task in tasks]
+  taskSearch['tasks'] = [task.to_dict() for task in tasks]
   taskSearch['numCompleted'] = 0
   taskSearch['numNotCompleted'] = 0
   for task in taskSearch['tasks']:
-    if task.completed == True:  taskSearch['numCompleted'] += 1
+    if task['completed'] == True:  taskSearch['numCompleted'] += 1
     else: taskSearch['numNotCompleted'] += 1
   return taskSearch

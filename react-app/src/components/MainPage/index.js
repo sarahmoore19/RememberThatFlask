@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import LeftPanel from "../LeftPanel";
 import TaskList from "../TaskList";
 import SearchList from "../TaskList/searchList";
-import RightPanel from "../RightPanel";
 import { Route, Switch } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 

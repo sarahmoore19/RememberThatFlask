@@ -14,10 +14,10 @@ function SearchList() {
     const [completeContext, setCompleteContext] = useState(false)
     let tasks = Object.values(useSelector(state => state.search.searchResults))
     let numCompleted = useSelector(state => state.search.numCompleted)
-    let numNotCompleted = useSelector(state => state.search.numCompleted)
+    let numNotCompleted = useSelector(state => state.search.numNotCompleted)
 
     useEffect(() => {
-      //dispatch(searchActions.allSearch(query))
+      dispatch(searchActions.allSearch(query))
     }, [dispatch])
     if (!tasks) return null
 
