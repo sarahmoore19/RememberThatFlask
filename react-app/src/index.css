@@ -1,16 +1,120 @@
 /* TODO Add site wide styles */
-.flx {
-  display: flex;
+/*============ html tag =============*/
+body {
+  margin: 0px;
 }
 
-.mrg20p {
-  margin-right: 20px;
+a:link { text-decoration: none; }
+
+li {
+  list-style-type: none;
+}
+/*============= className ============*/
+.bg-blue-0bf {
+  background-color: #0060bf;
+}
+
+.bg-blue-fcc {
+  background-color: #317fcc;
+}
+
+.bg-blue-dff {
+  background-color: #009dff;
 }
 
 .border-red {
   border: 2px red solid;
 }
 
-li {
-list-style-type: none;
+.border-white-ef2 {
+  border: 2px solid #cadef2;
+}
+
+.border-0 {
+  border: 0px;
+}
+
+.borderR-5p {
+  border-radius: 5px;
+}
+
+.color-white {
+  color: white;
+}
+
+.color-white-ef2 {
+  color: #cadef2
+}
+
+.flx {
+  display: flex;
+}
+
+.flx-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flx-jc-sa {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.flx-ac-center {
+  align-content: center;
+}
+
+.flx-wrap {
+  flex-wrap: wrap;
+}
+
+.fontS-115rem {
+  font-size: 1.15rem;
+}
+
+.fontS-125rem {
+  font-size: 1.25rem;
+}
+
+.gap15p {
+  gap:15px;
+}
+
+.grid-1-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.mrg0p {
+  margin: 0px;
+}
+
+.mrg20p {
+  margin-right: 20px;
+}
+
+.pad-lr-10p {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.pad-tb-5p {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.pad-tb-10p {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.pad-tb-15p {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.pad-tb-25p {
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
