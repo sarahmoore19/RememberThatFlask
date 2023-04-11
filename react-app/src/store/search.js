@@ -1,9 +1,9 @@
 const ADDSEARCHRESULTS = 'search/ADDSEARCHRESULTS';
 
-const setSearchResults = (array) => {
+const setSearchResults = (obj) => {
   return {
     type: ADDSEARCHRESULTS,
-    array
+    obj
   };
 };
 
@@ -11,20 +11,25 @@ const setSearchResults = (array) => {
   const response = await fetch(`/api/search?search=${query}`)
   if (response.ok) {
     const data = await response.json();
+    console.log(data)
     dispatch(setSearchResults(data));
   };
   return response
 };
 
 const initialState = {
-  searchResults: {}
+  searchResults: {},
+  numCompleted: 0,
+  numNotCompleted: 0
  };
 
 const searchReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADDSEARCHRESULTS:
       let newState = {searchResults: {}};
-      action.array.forEach(s => newState.searchResults[s.id] = s);
+      action.obj.tasks.forEach(s => newState.searchResults[s.id] = s);
+      newState.numCompleted = action.obj.numCompleted
+      newState.numNotCompleted = action.obj.numNotCompleted
       return newState;
     default:
       return state;

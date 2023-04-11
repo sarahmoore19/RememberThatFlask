@@ -31,7 +31,7 @@ def oneList(id):
   return listDict
 
 # create list
-@lists.route('/', methods=['POST'])
+@lists.route('', methods=['POST'])
 @login_required
 def createList():
   form = ListForm()
@@ -65,6 +65,7 @@ def renameList(id):
 @login_required
 def deleteList(id):
   list = List.query.get(id)
+  deletedList = list.to_dict()
   db.session.delete(list)
   db.session.commit()
-  return f'List Deleted {id}'
+  return deletedList

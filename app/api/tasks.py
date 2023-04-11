@@ -13,7 +13,13 @@ tasks = Blueprint('tasks', __name__)
 def allTasks():
   id = current_user.id
   tasks = Task.query.filter(Task.user_id == id).all()
-  tasksList = [task.to_dict() for task in tasks]
+  tasksList = {}
+  tasksList['tasks'] = [task.to_dict() for task in tasks]
+  tasksList['numCompleted'] = 0
+  tasksList['numNotCompleted'] = 0
+  for task in tasks:
+    if task.completed == True:  tasksList['numCompleted'] += 1
+    else: tasksList['numNotCompleted'] += 1
   return tasksList
 
 # get a single task
@@ -38,7 +44,6 @@ def createTask():
       due_date = form.data['due_date'],
       user_id = current_user.id,
       list_id = form.data['list_id'],
-      completed = form.data['completed']
     )
     db.session.add(new_task)
     db.session.commit()
@@ -81,6 +86,7 @@ def addTasktoList(list_id, task_id):
 @login_required
 def deleteTask(id):
   task = Task.query.get(id)
+  taskDict = task.to_dict()
   db.session.delete(task)
   db.session.commit()
-  return f'Task Deleted {id}'
+  return taskDict

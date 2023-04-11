@@ -68,6 +68,7 @@ export const createlist = (formData) => async (dispatch) => {
 		},
     body: JSON.stringify(formData)
   })
+  console.log(response)
   if (response.ok) {
     const data = await response.json();
     dispatch(createList1(data));
@@ -93,11 +94,13 @@ export const renameList = (listId, formData) => async (dispatch) => {
   return response
 };
 
-export const deletelist = (listId) => async (dispatch) => {
+export const deleteList = (listId) => async (dispatch) => {
   const response = await fetch(`/api/lists/${listId}`, {
     method: 'DELETE'
   })
+  console.log('thunk being called')
   if (response.ok) {
+  console.log('response ok')
     const data = await response.json();
     dispatch(deleteList1(listId));
   };
@@ -117,7 +120,7 @@ const listReducer = (state = initialState, action) => {
       return newState1;
     case SETSINGLELIST:
       // we do not know if list.tasks will copy or not... if problems arise we can adjust
-      let newState2 = { allLists: { ...state.allLists }, singleList: {} };
+      let newState2 = { allLists: { ...state.allLists }, singleList: {}};
       newState2.singleList = { ...action.obj };
       return newState2;
     case UPDATELISTNAME:
@@ -126,15 +129,14 @@ const listReducer = (state = initialState, action) => {
       newState3.allLists[list1.id] = { ...list1 };
       return newState3
     case CREATELIST:
-      let newState5 = { alllists: { ...state.allLists }, singleList: {} };
+      let newState5 = { allLists: { ...state.allLists }, singleList: {} };
       let list2 = action.obj
-      newState5.alllists[list2.id] = { ...list2 };
+      newState5.allLists[list2.id] = { ...list2 };
       return newState5
     case DELETELIST:
       let newState6 = { allLists: { ...state.allLists }, singleList: {...state.singleList} };
-      let list3 = action.listId
-      delete newState6.allLists[list3.id]
-      if (newState6.singleList.id == list3.id) newState6.singleList = {}
+      delete newState6.allLists[action.listId]
+      if (newState6.singleList.id == action.listId) newState6.singleList = {}
       return newState6
     default:
       return state;
