@@ -4,15 +4,12 @@ import { Route, StaticRouter, Switch } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import * as taskActions from '../../store/tasks'
 import * as listActions from '../../store/lists';
+import * as searchActions from '../../store/search';
 import Complete from "../TasksPanel/complete";
 import Incomplete from "../TasksPanel/incomplete";
-import Summary from '../RightPanel/summary'
 import TaskDetail from '../RightPanel/taskDetail'
 
-// hey guys i feel like there is too much going on on this page, feel like we should split this component into different ones (list tasks, all tasks, and search tasks)
-// especially when we implement the buttons like delete update create etc .... buttons will all have different functions and going to get confusing - sarah
-
-function TaskList({ context }) {
+function TaskList({ context, query }) {
   let dispatch = useDispatch()
   let { listId } = useParams()
   const [completeContext, setCompleteContext] = useState(false)
@@ -22,6 +19,9 @@ function TaskList({ context }) {
   let list = useSelector(state => state.lists.singleList)
   let tasksNum = useSelector(state => state.tasks.numCompleted)
   let tasksNotNum = useSelector(state => state.tasks.numNotCompleted)
+  let searchTasks = Object.values(useSelector(state => state.search.searchResults))
+  let searchTasksNum = useSelector(state => state.search.numCompleted)
+  let searchTasksNotNum = useSelector(state => state.search.numNotCompleted)
   let tasks
   let nC
   let nNC
@@ -30,13 +30,22 @@ function TaskList({ context }) {
     nC = list.numCompleted;
     nNC = list.numNotCompleted;
   }
-  else {
+  else if (context == 'allTasks') {
     tasks = allTasks
     nC = tasksNum
     nNC = tasksNotNum
   }
+  else {
+    tasks = searchTasks
+    nC = searchTasksNum
+    nNC = searchTasksNotNum
+  }
 
   useEffect(() => {
+    if (context == 'search') {
+      console.log('--------------------', query)
+      dispatch(searchActions.allSearch(query))
+    }
     dispatch(taskActions.allTasks())
     dispatch(listActions.singleList(listId))
     setTD(false)
@@ -80,14 +89,14 @@ function TaskList({ context }) {
       setCurrTaskId={setCurrTaskId}
       />) : (
       <div>
-        <h2>{context == 'list' ? list.name : 'All Tasks'}</h2>
+        <h2>{context == 'list' ? list.name : 'Tasks'}</h2>
         <div>
           <div>
-            <div>{nC}</div>
+            <div>{nNC}</div>
             <div>tasks</div>
           </div>
           <div>
-            <div>{nNC}</div>
+            <div>{nC}</div>
             <div>completed</div>
           </div>
         </div>
