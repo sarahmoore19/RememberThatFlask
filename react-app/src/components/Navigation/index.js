@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import * as searchActions from '../../store/search';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
-	const [search, setSearch] = useState('');
+	const [query, setQuery] = useState('');
+	let dispatch = useDispatch()
+	let history = useHistory();
 
 	const handleSearch = async (e) => {
-    e.preventDefault()
-		window.alert("TODO",search)
-  }
+	  e.preventDefault()
+	  dispatch(searchActions.allSearch(query))
+      return history.push(`/app/search/${query}`)
+    }
 
 	return (
 		<ul>
@@ -32,10 +36,12 @@ function Navigation({ isLoaded }){
 				<li>
 					<form onSubmit={handleSearch}>
 						<input
-							value={search}
-							onChange={(e) => setSearch(e.target.value)}
+							value={query}
+							onChange={(e) => setQuery(e.target.value)}
 							placeholder='search bar'/>
-						<button type='submit'>Search</button>
+						<button
+						  disabled={!query}
+						  type='submit'>Search</button>
 					</form>
 					<ProfileButton user={sessionUser} />
 				</li>
