@@ -53,7 +53,7 @@ function LeftPanel() {
             <OpenModalButton
               id='id'
               buttonText="Rename"
-              modalComponent={<ListModal action="rename" />}
+              modalComponent={<ListModal action="rename" listId={o.id} />}
             />
           </li>
         ))}

@@ -3,7 +3,7 @@ import * as listActions from '../../store/lists';
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 
-function ListModal({ action }) {
+function ListModal({ action, listId }) {
   const dispatch = useDispatch();
   const [listName, setListName] = useState("");
   const [errors, setErrors] = useState([]);
@@ -12,10 +12,18 @@ function ListModal({ action }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // setErrors([]);
-    return dispatch(listActions.createlist(
-      { name: listName }
-    ))
+    if(action == "create") {
+      return dispatch(listActions.createlist(
+        { name: listName }
+      ))
+        .then(closeModal)
+    }
+
+    else if(action=="rename") {
+      return dispatch(listActions.renameList(listId, { name: listName }))
       .then(closeModal)
+    }
+
   };
 
   return (
