@@ -25,43 +25,49 @@ function LoginFormPage() {
   };
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
+    <div className="grid-1-1">
+      <div className="bg-blue-fcc"></div>
+      <div>
+        <h1>Log In</h1>
+        <form onSubmit={handleSubmit} className="flx-col flx-wrap flx-ac-center gap15p">
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder="Email"
           />
-        </label>
-        <label>
-          Password
+
+
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Password"
           />
-        </label>
-        <button type="submit">Log In</button>
-        <button
-          type='submit'
-          onClick={() => {
-            setEmail('demo@aa.io');
-            setPassword('password');
-          }}>
-            Log in as Demo User
-        </button>
-      </form>
-    </>
+
+          <button type="submit" className="bg-blue-dff color-white border-0 pad-tb-10p fontS-115rem">
+            Log In
+          </button>
+          <button
+            type='submit'
+            onClick={() => {
+              setEmail('demo@aa.io');
+              setPassword('password');
+            }}
+            className="bg-blue-dff color-white border-0 pad-tb-10p fontS-115rem">
+              Log in as Demo User
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
 

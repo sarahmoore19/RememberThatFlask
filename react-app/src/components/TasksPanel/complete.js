@@ -22,7 +22,7 @@ function Complete({tasks, tD, setTD, currTaskId, setCurrTaskId}) {
         <h1>complete</h1>
         {tasks.map(t => (
           <li
-          onClick={handleTaskDetails(t.id)}
+          onClick={()=>handleTaskDetails(t.id)}
           key={t.id}>
            {t.name}
           </li>

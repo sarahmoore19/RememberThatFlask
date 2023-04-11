@@ -18,35 +18,42 @@ function Navigation({ isLoaded }){
     }
 
 	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
-			{isLoaded && !sessionUser && (
+		<div className='pad-tb-25p color-white bg-blue-0bf'>
+			<ul className='flx-jc-sa  mrg0p '>
 				<li>
-					<button>
-						<NavLink to='/login'>Login</NavLink>
-					</button>
-					<button>
-						<NavLink to='/signup'>Sign up for Free</NavLink>
-					</button>
+					<NavLink exact to="/" className={"color-white-ef2 fontS-125rem"}>Home</NavLink>
 				</li>
-			)}
-			{isLoaded && sessionUser && (
-				<li>
-					<form onSubmit={handleSearch}>
-						<input
-							value={query}
-							onChange={(e) => setQuery(e.target.value)}
-							placeholder='search bar'/>
-						<button
-						  disabled={!query}
-						  type='submit'>Search</button>
-					</form>
-					<ProfileButton user={sessionUser} />
-				</li>
-			)}
-		</ul>
+				{isLoaded && !sessionUser && (
+					<li className='flx gap15p'>
+						<div>
+							<NavLink to='/login' className={"color-white-ef2 fontS-125rem"}>
+								Login
+							</NavLink>
+						</div>
+						<div>
+							<NavLink to='/signup' className={"color-white-ef2 fontS-125rem border-white-ef2 borderR-5p pad-tb-5p pad-lr-10p"}>
+								Sign up for free
+							</NavLink>
+						</div>
+					</li>
+				)}
+				{isLoaded && sessionUser && (
+					<li>
+						<form onSubmit={handleSearch}>
+							<input
+								value={query}
+								onChange={(e) => setQuery(e.target.value)}
+								placeholder='search bar'/>
+							<button
+								disabled={!query}
+								type='submit'>Search</button>
+						</form>
+						<ProfileButton user={sessionUser} />
+					</li>
+				)}
+			</ul>
+
+		</div>
 	);
 }
 
