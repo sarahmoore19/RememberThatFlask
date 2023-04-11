@@ -68,6 +68,7 @@ export const createlist = (formData) => async (dispatch) => {
 		},
     body: JSON.stringify(formData)
   })
+  console.log(response)
   if (response.ok) {
     const data = await response.json();
     dispatch(createList1(data));
@@ -126,9 +127,9 @@ const listReducer = (state = initialState, action) => {
       newState3.allLists[list1.id] = { ...list1 };
       return newState3
     case CREATELIST:
-      let newState5 = { alllists: { ...state.allLists }, singleList: {} };
+      let newState5 = { allLists: { ...state.allLists }, singleList: {} };
       let list2 = action.obj
-      newState5.alllists[list2.id] = { ...list2 };
+      newState5.allLists[list2.id] = { ...list2 };
       return newState5
     case DELETELIST:
       let newState6 = { allLists: { ...state.allLists }, singleList: {...state.singleList} };

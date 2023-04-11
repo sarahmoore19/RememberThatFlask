@@ -31,7 +31,7 @@ def oneList(id):
   return listDict
 
 # create list
-@lists.route('/', methods=['POST'])
+@lists.route('', methods=['POST'])
 @login_required
 def createList():
   form = ListForm()

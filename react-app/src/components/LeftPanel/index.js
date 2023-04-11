@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as taskActions from '../../store/tasks'
 import * as listActions from '../../store/lists';
 
+import OpenModalButton from '../OpenModalButton';
+import CreateListModal from '../CreateListModal';
+
 function LeftPanel() {
 
   const dispatch = useDispatch();
@@ -31,6 +34,11 @@ function LeftPanel() {
       >All Tasks</Link>
     </div>
     <ul className="border-red">
+      <li><OpenModalButton
+                id='id'
+                buttonText="CreateList"
+                modalComponent={<CreateListModal />}
+              /></li>
       <li>List</li>
       {arr.map(o => (
        <li
