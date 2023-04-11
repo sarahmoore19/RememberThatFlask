@@ -151,7 +151,9 @@ export const deleteTask = (taskId) => async (dispatch) => {
 
 const initialState = {
   allTasks: {},
-  singleTask: {}
+  singleTask: {},
+  numCompleted: 0,
+  numNotCompleted: 0
 };
 
 const tasksReducer = (state = initialState, action) => {
@@ -159,48 +161,48 @@ const tasksReducer = (state = initialState, action) => {
     case SETALLTASKS:
       let newState1 = { singleTask: { ...state.allTasks }, allTasks: {} };
       action.obj.tasks.forEach(s => newState1.allTasks[s.id] = s);
-      newState1.allTasks.numCompleted = action.obj.numCompleted
-      newState1.allTasks.numNotCompleted = action.obj.numNotCompleted
+      newState1.numCompleted = action.obj.numCompleted
+      newState1.numNotCompleted = action.obj.numNotCompleted
       return newState1;
     case SETSINGLETASK:
       // we do not know if task.list will copy or not... if problems arise we can adjust
-      let newState2 = { allTasks: { ...state.allTasks }, singleTask: {} };
+      let newState2 = { ...state, allTasks: { ...state.allTasks }, singleTask: {} };
       newState2.singleTask = { ...action.obj };
       return newState2;
     case UPDATETASKNAME:
-      let newState3 = { allTasks: { ...state.allTasks }, singleTask: {} };
+      let newState3 = { ...state, allTasks: { ...state.allTasks }, singleTask: {} };
       let task1 = action.obj
       newState3.allTasks[task1.id] = { ...task1 };
       return newState3
     case UPDATECOMPLETEDSTATUS:
-      let newState4 = { allTasks: { ...state.allTasks }, singleTask: {} };
+      let newState4 = {...state, allTasks: { ...state.allTasks }, singleTask: {} };
       let task2 = action.obj
       if (task2.completed) {
-        newState4.allTasks.numCompleted += 1
-        newState4.allTasks.numNotCompleted -= 1
+        newState4.numCompleted += 1
+        newState4.numNotCompleted -= 1
       }
       else {
-        newState4.allTasks.numCompleted -= 1
-        newState4.allTasks.numNotCompleted += 1
+        newState4.numCompleted -= 1
+        newState4.numNotCompleted += 1
       }
       newState4.allTasks[task2.id] = { ...task2 };
       return newState4
     case UPDATETASKLIST:
-      let newState5 = { allTasks: { ...state.allTasks }, singleTask: {} };
+      let newState5 = {...state, allTasks: { ...state.allTasks }, singleTask: {} };
       let task3 = action.obj
       newState5.allTasks[task3.id] = { ...task3 };
       return newState5
     case CREATETASK:
-      let newState6 = { allTasks: { ...state.allTasks }, singleTask: {} };
-      newState6.allTasks.numNotCompleted += 1
+      let newState6 = {...state, allTasks: { ...state.allTasks }, singleTask: {} };
+      newState6.numNotCompleted += 1
       let task4 = action.obj
       newState6.allTasks[task4.id] = { ...task4 };
       return newState6
     case DELETETASK:
-      let newState7 = { allTasks: { ...state.allTasks }, singleTask: {...state.singleTask} };
+      let newState7 = {...state, allTasks: { ...state.allTasks }, singleTask: {...state.singleTask} };
       let task5 = action.obj
-      if (task5.completed) newState7.allTasks.numCompleted -= 1
-      else newState7.allTasks.numNotCompleted -= 1
+      if (task5.completed) newState7.numCompleted -= 1
+      else newState7.numNotCompleted -= 1
       delete newState7.allTasks[task5.id]
       if (newState7.singleTask.id == task5.id) newState7.singleTask = {}
       return newState7
