@@ -6,6 +6,7 @@ import * as listActions from '../../store/lists';
 
 import OpenModalButton from '../OpenModalButton';
 import ListModal from '../ListModal';
+import DeleteModal from '../DeleteModal'
 
 function LeftPanel() {
 
@@ -49,7 +50,10 @@ function LeftPanel() {
             >
               {o.name}
             </Link>
-            <button>Delete</button>
+            <OpenModalButton
+              buttonText="Delete"
+              modalComponent={<DeleteModal listId={o.id} />}
+            />
             <OpenModalButton
               id='id'
               buttonText="Rename"

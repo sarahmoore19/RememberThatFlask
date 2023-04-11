@@ -65,6 +65,7 @@ def renameList(id):
 @login_required
 def deleteList(id):
   list = List.query.get(id)
+  deletedList = list.to_dict()
   db.session.delete(list)
   db.session.commit()
-  return f'List Deleted {id}'
+  return deletedList

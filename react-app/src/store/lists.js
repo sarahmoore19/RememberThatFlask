@@ -94,11 +94,13 @@ export const renameList = (listId, formData) => async (dispatch) => {
   return response
 };
 
-export const deletelist = (listId) => async (dispatch) => {
+export const deleteList = (listId) => async (dispatch) => {
   const response = await fetch(`/api/lists/${listId}`, {
     method: 'DELETE'
   })
+  console.log('thunk being called')
   if (response.ok) {
+  console.log('response ok')
     const data = await response.json();
     dispatch(deleteList1(listId));
   };
@@ -133,9 +135,8 @@ const listReducer = (state = initialState, action) => {
       return newState5
     case DELETELIST:
       let newState6 = { allLists: { ...state.allLists }, singleList: {...state.singleList} };
-      let list3 = action.listId
-      delete newState6.allLists[list3.id]
-      if (newState6.singleList.id == list3.id) newState6.singleList = {}
+      delete newState6.allLists[action.listId]
+      if (newState6.singleList.id == action.listId) newState6.singleList = {}
       return newState6
     default:
       return state;
