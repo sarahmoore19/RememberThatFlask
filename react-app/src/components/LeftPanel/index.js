@@ -8,7 +8,6 @@ function LeftPanel() {
 
   const dispatch = useDispatch();
   const lists = useSelector(state => state.lists.allLists);
-  console.log('=================', lists)
   let arr = Object.values(lists);
 
   useEffect(() => {
@@ -27,6 +26,7 @@ function LeftPanel() {
     <div className="border-red">
       <p>Inbox</p>
       <Link
+      onClick={() => dispatch(taskActions.allTasks())}
       to={'/app/all'}
       >All Tasks</Link>
     </div>
@@ -36,7 +36,9 @@ function LeftPanel() {
        <li
        key={o.id}>
           <Link
-          to={`/app/lists/${o.id}`}>
+          onClick={() => dispatch(listActions.singleList(o.id))}
+          to={`/app/lists/${o.id}`}
+          >
           {o.name}
           </Link>
        </li>

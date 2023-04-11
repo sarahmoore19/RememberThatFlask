@@ -13,7 +13,8 @@ tasks = Blueprint('tasks', __name__)
 def allTasks():
   id = current_user.id
   tasks = Task.query.filter(Task.user_id == id).all()
-  tasksList = [task.to_dict() for task in tasks]
+  tasksList = {}
+  tasksList['tasks'] = [task.to_dict() for task in tasks]
   tasksList['numCompleted'] = 0
   tasksList['numNotCompleted'] = 0
   for task in tasks:

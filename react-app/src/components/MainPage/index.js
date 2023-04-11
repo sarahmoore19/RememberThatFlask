@@ -11,11 +11,14 @@ function MainPage() {
       <LeftPanel />
       <Switch>
       <Route path="/app/all" >
-        <div>ALL TASK ROUTE</div>
+        <TaskList
+        context='allTasks'
+        />
       </Route>
       <Route path="/app/lists/:listId" >
-        <div>LIST ROUTE</div>
-        <TaskList/>
+        <TaskList
+        context='list'
+        />
       </Route>
       </Switch>
     </div>

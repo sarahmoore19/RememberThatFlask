@@ -117,8 +117,9 @@ const listReducer = (state = initialState, action) => {
       return newState1;
     case SETSINGLELIST:
       // we do not know if list.tasks will copy or not... if problems arise we can adjust
-      let newState2 = { allLists: { ...state.allLists }, singleList: {} };
+      let newState2 = { allLists: { ...state.allLists }, singleList: { tasks: [] }};
       newState2.singleList = { ...action.obj };
+      newState2.singleList.tasks = action.obj.tasks;
       return newState2;
     case UPDATELISTNAME:
       let newState3 = { allLists: { ...state.allLists }, singleList: {} };
