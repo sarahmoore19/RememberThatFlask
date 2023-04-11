@@ -5,7 +5,7 @@ import * as taskActions from '../../store/tasks'
 import * as listActions from '../../store/lists';
 
 import OpenModalButton from '../OpenModalButton';
-import CreateListModal from '../CreateListModal';
+import ListModal from '../ListModal';
 
 function LeftPanel() {
 
@@ -18,41 +18,47 @@ function LeftPanel() {
   }, [dispatch])
 
   return (
-  <div>
     <div>
-    <img
-    width='50px'
-    height='50px'
-    src="https://static.vecteezy.com/system/resources/previews/002/652/150/original/cute-deer-wild-animal-character-icon-free-vector.jpg"
-    />
+      <div>
+        <img
+          width='50px'
+          height='50px'
+          src="https://static.vecteezy.com/system/resources/previews/002/652/150/original/cute-deer-wild-animal-character-icon-free-vector.jpg"
+        />
+      </div>
+      <div className="border-red">
+        <p>Inbox</p>
+        <Link
+          onClick={() => dispatch(taskActions.allTasks())}
+          to={'/app/all'}
+        >All Tasks</Link>
+      </div>
+      <ul className="border-red">
+        <li><OpenModalButton
+          id='id'
+          buttonText="CreateList"
+          modalComponent={<ListModal action="create" />}
+        /></li>
+        <li>List</li>
+        {arr.map(o => (
+          <li
+            key={o.id}>
+            <Link
+              onClick={() => dispatch(listActions.singleList(o.id))}
+              to={`/app/lists/${o.id}`}
+            >
+              {o.name}
+            </Link>
+            <button>Delete</button>
+            <OpenModalButton
+              id='id'
+              buttonText="Rename"
+              modalComponent={<ListModal action="rename" />}
+            />
+          </li>
+        ))}
+      </ul>
     </div>
-    <div className="border-red">
-      <p>Inbox</p>
-      <Link
-      onClick={() => dispatch(taskActions.allTasks())}
-      to={'/app/all'}
-      >All Tasks</Link>
-    </div>
-    <ul className="border-red">
-      <li><OpenModalButton
-                id='id'
-                buttonText="CreateList"
-                modalComponent={<CreateListModal />}
-              /></li>
-      <li>List</li>
-      {arr.map(o => (
-       <li
-       key={o.id}>
-          <Link
-          onClick={() => dispatch(listActions.singleList(o.id))}
-          to={`/app/lists/${o.id}`}
-          >
-          {o.name}
-          </Link>
-       </li>
-      ))}
-    </ul>
-  </div>
   )
 
 }

@@ -3,7 +3,7 @@ import * as listActions from '../../store/lists';
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 
-function CreateListModal() {
+function ListModal({ action }) {
   const dispatch = useDispatch();
   const [listName, setListName] = useState("");
   const [errors, setErrors] = useState([]);
@@ -13,16 +13,16 @@ function CreateListModal() {
     e.preventDefault();
     // setErrors([]);
     return dispatch(listActions.createlist(
-      {name: listName}
-      ))
+      { name: listName }
+    ))
       .then(closeModal)
   };
 
   return (
     <div className='new-list-form'>
-      <h1>Add a List</h1>
+      {action == "create" ? <h1>Add a List</h1> : <h1>Rename List</h1>}
       <form onSubmit={handleSubmit}>
-        <label>
+        {action == "create" ? (<label>
           Please enter a new list name:
           <input
             type="text"
@@ -30,12 +30,24 @@ function CreateListModal() {
             onChange={(e) => setListName(e.target.value)}
             required
           />
-        </label>
-        <button type="submit">Add</button>
+        </label>) :
+          (<label>
+            List name:
+            <input
+              type="text"
+              value={listName}
+              onChange={(e) => setListName(e.target.value)}
+              required
+            />
+          </label>)
+        }
+
+        {action == "create" ? <button type="submit">Add</button> : <button type="submit">Save</button>}
+
         <button onClick={closeModal}>Cancel</button>
       </form>
     </div>
   );
 }
 
-export default CreateListModal;
+export default ListModal;
