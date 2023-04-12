@@ -42,6 +42,7 @@ function LoginFormPage() {
             onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="Email"
+            className="fontS-125rem border-gray-9d9 pad10p borderR-5p"
           />
 
 
@@ -51,9 +52,10 @@ function LoginFormPage() {
             onChange={(e) => setPassword(e.target.value)}
             required
             placeholder="Password"
+            className="fontS-125rem border-gray-9d9 pad10p borderR-5p"
           />
 
-          <button type="submit" className="bg-blue-dff color-white border-0 pad-tb-10p fontS-115rem">
+          <button type="submit" className="bg-blue-dff color-white border-0 pad-tb-10p fontS-115rem borderR-5p">
             Log In
           </button>
           <button
@@ -62,7 +64,7 @@ function LoginFormPage() {
               setEmail('demo@aa.io');
               setPassword('password');
             }}
-            className="bg-blue-dff color-white border-0 pad-tb-10p fontS-115rem">
+            className="bg-blue-dff color-white border-0 pad-tb-10p fontS-115rem borderR-5p">
               Log in as Demo User
           </button>
         </form>

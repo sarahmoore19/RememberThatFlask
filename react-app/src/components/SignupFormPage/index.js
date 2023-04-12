@@ -32,51 +32,59 @@ function SignupFormPage() {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
-        <label>
-          Email
+    <div className="grid-1-1">
+      <div className="bg-blue-fcc"></div>
+      <div>
+        <h1>Sign Up</h1>
+        <form onSubmit={handleSubmit} className="flx-col flx-wrap flx-ac-center gap15p">
+          <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder="Email"
+            className="fontS-125rem border-gray-9d9 pad10p borderR-5p"
           />
-        </label>
-        <label>
-          Username
+
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            placeholder="Username"
+            className="fontS-125rem border-gray-9d9 pad10p borderR-5p"
           />
-        </label>
-        <label>
-          Password
+
+
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Password"
+            className="fontS-125rem border-gray-9d9 pad10p borderR-5p"
           />
-        </label>
-        <label>
-          Confirm Password
+
+
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            placeholder="Confirm Password"
+            className="fontS-125rem border-gray-9d9 pad10p borderR-5p"
           />
-        </label>
-        <button type="submit">Sign Up</button>
-      </form>
-    </>
+
+          <button type="submit"
+            className="bg-blue-dff color-white border-0 pad-tb-10p fontS-115rem borderR-5p">
+            Sign Up
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
 

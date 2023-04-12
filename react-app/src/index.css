@@ -1,4 +1,12 @@
 /* TODO Add site wide styles */
+:root {
+  --blue-0bf: #0060bf;
+  --blue-fcc: #317fcc;
+  --blue-dff: #317fcc;
+  --gray-9d9: #d9d9d9;
+  --white-ef2: #cadef2;
+
+}
 /*============ html tag =============*/
 body {
   margin: 0px;
@@ -11,23 +19,27 @@ li {
 }
 /*============= className ============*/
 .bg-blue-0bf {
-  background-color: #0060bf;
+  background-color: var(--blue-0bf);
 }
 
 .bg-blue-fcc {
-  background-color: #317fcc;
+  background-color: var(--blue-fcc);
 }
 
 .bg-blue-dff {
-  background-color: #009dff;
+  background-color: var(--blue-dff);
 }
 
 .border-red {
   border: 2px red solid;
 }
 
+.border-gray-9d9 {
+  border: 2px solid var(--gray-9d9);
+}
+
 .border-white-ef2 {
-  border: 2px solid #cadef2;
+  border: 2px solid var(--white-ef2);
 }
 
 .border-0 {
@@ -43,7 +55,7 @@ li {
 }
 
 .color-white-ef2 {
-  color: #cadef2
+  color: var(--white-ef2)
 }
 
 .flx {
@@ -92,6 +104,10 @@ li {
 
 .mrg20p {
   margin-right: 20px;
+}
+
+.pad10p {
+  padding: 10px;
 }
 
 .pad-lr-10p {
