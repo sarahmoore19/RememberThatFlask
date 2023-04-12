@@ -33,9 +33,16 @@ function SignupFormPage() {
 
   return (
     <div className="grid-1-1">
-      <div className="bg-blue-fcc"></div>
+      <div className="bg-blue-fcc color-gray-9d9">
+        <p className="fontS-200rem fontW-600 width-max-450p mrg-lr-auto">
+          Join millions of people getting more organized and productive!
+        </p>
+      </div>
       <div>
-        <h1>Sign Up</h1>
+        <div className="txt-ali-center">
+          <h1>Sign Up</h1>
+          <h3>Sign up for free</h3>
+        </div>
         <form onSubmit={handleSubmit} className="flx-col flx-wrap flx-ac-center gap15p">
           <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -79,7 +86,7 @@ function SignupFormPage() {
           />
 
           <button type="submit"
-            className="bg-blue-dff color-white border-0 pad-tb-10p fontS-115rem borderR-5p">
+            className="bg-blue-dff color-white cursor-p border-0 pad-tb-10p fontS-115rem borderR-5p">
             Sign Up
           </button>
         </form>

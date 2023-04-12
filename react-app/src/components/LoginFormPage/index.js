@@ -26,9 +26,22 @@ function LoginFormPage() {
 
   return (
     <div className="grid-1-1">
-      <div className="bg-blue-fcc"></div>
+      <div className="bg-blue-fcc color-white">
+        <blockquote>
+          <p className="fontS-200rem fontW-600 width-max-450p mrg-lr-auto">
+            "Hope you enjoy your journey with us"
+          </p>
+          <footer className="txt-ali-center fontS-125rem">
+            -- Group 5
+          </footer>
+
+        </blockquote>
+      </div>
       <div>
-        <h1>Log In</h1>
+        <div className="txt-ali-center">
+          <h1>Log In</h1>
+          <h3>Been here before? Welcome back!</h3>
+        </div>
         <form onSubmit={handleSubmit} className="flx-col flx-wrap flx-ac-center gap15p">
           <ul>
             {errors.map((error, idx) => (
@@ -55,7 +68,7 @@ function LoginFormPage() {
             className="fontS-125rem border-gray-9d9 pad10p borderR-5p"
           />
 
-          <button type="submit" className="bg-blue-dff color-white border-0 pad-tb-10p fontS-115rem borderR-5p">
+          <button type="submit" className="bg-blue-dff color-white cursor-p border-0 pad-tb-10p fontS-115rem borderR-5p">
             Log In
           </button>
           <button
@@ -64,7 +77,7 @@ function LoginFormPage() {
               setEmail('demo@aa.io');
               setPassword('password');
             }}
-            className="bg-blue-dff color-white border-0 pad-tb-10p fontS-115rem borderR-5p">
+            className="bg-blue-dff color-white cursor-p border-0 pad-tb-10p fontS-115rem borderR-5p">
               Log in as Demo User
           </button>
         </form>

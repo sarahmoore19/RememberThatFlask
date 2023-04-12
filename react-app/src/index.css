@@ -2,7 +2,8 @@
 :root {
   --blue-0bf: #0060bf;
   --blue-fcc: #317fcc;
-  --blue-dff: #317fcc;
+  --blue-dff: #009dff;
+  --blue-ecc: #007ecc;
   --gray-9d9: #d9d9d9;
   --white-ef2: #cadef2;
 
@@ -28,6 +29,10 @@ li {
 
 .bg-blue-dff {
   background-color: var(--blue-dff);
+}
+
+.bg-blue-dff:hover {
+  background-color: var(--blue-ecc);
 }
 
 .border-red {
@@ -56,6 +61,22 @@ li {
 
 .color-white-ef2 {
   color: var(--white-ef2)
+}
+
+.color-gray-9d9 {
+  color: var(--gray-9d9)
+}
+
+.cursor-p {
+
+}
+
+.cursor-p:hover {
+  cursor: pointer;
+}
+
+.dis-block{
+  display: block;
 }
 
 .flx {
@@ -89,6 +110,14 @@ li {
   font-size: 1.25rem;
 }
 
+.fontS-200rem {
+  font-size: 2rem;
+}
+
+.fontW-600 {
+  font-weight: 600;
+}
+
 .gap15p {
   gap:15px;
 }
@@ -104,6 +133,11 @@ li {
 
 .mrg20p {
   margin-right: 20px;
+}
+
+.mrg-lr-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .pad10p {
@@ -133,4 +167,12 @@ li {
 .pad-tb-25p {
   padding-top: 25px;
   padding-bottom: 25px;
+}
+
+.txt-ali-center {
+  text-align: center;
+}
+
+.width-max-450p {
+  max-width: 450px;
 }
