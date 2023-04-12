@@ -33,7 +33,7 @@ def oneTask(id):
   return taskDict
 
 # create a task
-@tasks.route('/', methods=['POST'])
+@tasks.route('', methods=['POST'])
 @login_required
 def createTask():
   form = TaskForm()
