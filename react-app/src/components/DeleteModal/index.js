@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import * as listActions from '../../store/lists';
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import * as taskActions from '../../store/tasks';
 
-function DeleteModal({ listId }) {
+function DeleteModal({ listId, action, taskId }) {
   const dispatch = useDispatch();
   const [listName, setListName] = useState("");
   const [errors, setErrors] = useState([]);
@@ -11,13 +12,14 @@ function DeleteModal({ listId }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(listActions.deleteList(listId))
+    if(action === 'deleteTask') dispatch(taskActions.deleteTask(taskId))
+    else dispatch(listActions.deleteList(listId))
     closeModal()
   };
 
   return (
     <div>
-        <h2>Remove List?</h2>
+        {action === 'deleteTask' ? <h2>Remove Task?</h2> : <h2>Remove List?</h2>}
         <button onClick={handleSubmit}>
           Yes
         </button>
