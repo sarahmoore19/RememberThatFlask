@@ -7,8 +7,12 @@ import * as listActions from '../../store/lists';
 import DeleteModal from '../DeleteModal';
 import OpenModalButton from '../OpenModalButton';
 
-function Incomplete({ context, tasks, tD, setTD, currTaskId, setCurrTaskId }) {
+function Incomplete({ context, tasks, tD, setTD, currTaskId, setCurrTaskId, listId }) {
   let dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(listActions.singleList(listId))
+  }, [dispatch])
 
   const handleTaskDetails = async (taskId) => {
     if (taskId == currTaskId) setTD(!tD)

@@ -5,17 +5,16 @@ import { useParams } from 'react-router-dom';
 import * as taskActions from '../../store/tasks'
 import * as listActions from '../../store/lists';
 
-function TaskDetail({ currTaskId }) {
+function TaskDetail({ currTaskId, setTD }) {
   let dispatch = useDispatch()
   let task = useSelector(state => state.tasks.singleTask)
-
-  console.log("this is TaskDetail: ", task.name)
-  console.log("currTaskId: ", currTaskId)
-
+  let lists = Object.values(useSelector(state => state.lists.allLists))
+  let list = lists.find(l => l.id == task.list_id)
   const [inputValue, setInputValue] = useState(task.name);
 
   useEffect(() => {
     dispatch(taskActions.singleTask(currTaskId))
+    dispatch(listActions.allLists())
   }, [dispatch])
 
   useEffect(() => {
@@ -34,12 +33,27 @@ function TaskDetail({ currTaskId }) {
     dispatch(taskActions.singleTask(currTaskId))
   }
 
+  const handleListChange = (e) => {
+    dispatch(taskActions.updateTaskList(task.id, {listId: e.target.value}))
+    if (e.target.value) dispatch(listActions.singleList(list.id))
+    setTD(false)
+  }
 
   return (
     <>
       <div className="border-red">task details component {task.name}</div>
       <div>
         <input type="text" value={inputValue} onChange={handleInputChange} onBlur={handleOnBlur} />
+      </div>
+      <div>
+        {list?.name || 'Inbox'}
+        <select
+        onChange={handleListChange}>
+          <option value={null}>Inbox</option>
+          {lists.map(l => (
+          <option value={l.id}>{l.name}</option>
+          ))}
+        </select>
       </div>
     </>
   )

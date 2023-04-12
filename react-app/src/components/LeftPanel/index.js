@@ -61,7 +61,10 @@ function LeftPanel({setTD}) {
             </Link>
             <OpenModalButton
               buttonText="Delete"
-              modalComponent={<DeleteModal listId={o.id} />}
+              modalComponent={
+              <DeleteModal
+              action='list'
+              listId={o.id} />}
             />
             <OpenModalButton
               id='id'

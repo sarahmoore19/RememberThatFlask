@@ -4,22 +4,30 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as taskActions from '../../store/tasks';
 import * as searchActions from '../../store/search';
-import { useParams } from "react-router-dom";
 
-function DeleteModal({ listId, action, taskId, setTD }) {
-  const { query } = useParams
+function DeleteModal({ query, listId, action, taskId, setTD }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log(action)
     e.preventDefault()
-    if( action === 'deleteTask' ) {
-      dispatch(taskActions.deleteTask(taskId))
-      dispatch(searchActions.allSearch(query))
+
+    if (action == 'list') dispatch(listActions.deleteList(listId))
+
+    else {
+      setTD(false)
+      await dispatch(taskActions.deleteTask(taskId))
+
+      if ( action === 'deleteTaskList') {
+        await dispatch(listActions.singleList(listId))
+      }
+      else if ( action === 'deleteTaskSearch') {
+        await dispatch(searchActions.allSearch(query))
+      }
     }
-    else dispatch(listActions.deleteList(listId))
+
     closeModal()
-    setTD(false)
   };
 
   return (

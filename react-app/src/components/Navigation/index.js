@@ -41,7 +41,7 @@ function Navigation({ isLoaded }){
 					<li className='flx gap15p'>
 						<form onSubmit={handleSearch} className='bg-blue-0cc pad8p borderR-5p'>
 
-							<i class="fas fa-search mrg-r-8p"></i>
+							<i className="fas fa-search mrg-r-8p"></i>
 
 							<input
 								value={query}

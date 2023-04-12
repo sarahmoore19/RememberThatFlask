@@ -5,8 +5,9 @@ import { useParams } from 'react-router-dom';
 import * as taskActions from '../../store/tasks'
 import * as listActions from '../../store/lists';
 import * as searchActions from '../../store/search';
-import Incomplete from "../TasksPanel/incomplete";
 import TaskDetail from '../RightPanel/taskDetail'
+import DeleteModal from '../DeleteModal';
+import OpenModalButton from '../OpenModalButton';
 
 function TaskList({ context, tD, setTD }) {
   let dispatch = useDispatch()
@@ -24,26 +25,31 @@ function TaskList({ context, tD, setTD }) {
   let tasks
   let nC
   let nNC
+  let deleteTaskContext
   if (context == 'list') {
     tasks = list.tasks
     nC = list.numCompleted;
     nNC = list.numNotCompleted;
+    deleteTaskContext = 'deleteTaskList'
   }
   else if (context == 'allTasks') {
     tasks = allTasks
     nC = tasksNum
     nNC = tasksNotNum
+    deleteTaskContext = 'deleteTaskAll'
   }
   else {
     tasks = searchTasks
     nC = searchTasksNum
     nNC = searchTasksNotNum
+    deleteTaskContext = 'deleteTaskSearch'
   }
 
   useEffect(() => {
-    dispatch(searchActions.allSearch(query))
-    dispatch(taskActions.allTasks())
-    dispatch(listActions.singleList(listId))
+    if (context == 'list') dispatch(listActions.singleList(listId))
+    else if (context == 'allTasks')  dispatch(taskActions.allTasks())
+    else dispatch(searchActions.allSearch(query))
+
     setTD(false)
   }, [dispatch, completeContext])
 
@@ -65,15 +71,28 @@ function TaskList({ context, tD, setTD }) {
     }
 
     else {
-      dispatch(taskActions.createTask({
+      await dispatch(taskActions.createTask({
         name: newTaskName
       }))
     }
+
+    if (context == 'search') await dispatch(searchActions.allSearch(query))
   }
+
+  const handleTaskDetails = async (taskId) => {
+    if (taskId == currTaskId) setTD(!tD)
+    else {
+      await dispatch(taskActions.singleTask(taskId))
+      setCurrTaskId(taskId)
+      setTD(true)
+    }
+  }
+
 
   return (
     <div className="border-red">
       <div>
+
         <div>
           <button
             onClick={() => setCompleteContext(false)}
@@ -82,6 +101,7 @@ function TaskList({ context, tD, setTD }) {
             onClick={() => setCompleteContext(true)}
           >Complete</button>
         </div>
+
         <div>
           <form
             onSubmit={createTask}>
@@ -96,17 +116,35 @@ function TaskList({ context, tD, setTD }) {
             </button>
           </form>
         </div>
-        <Incomplete
-          tasks={tasksToSend}
-          context={completeContext}
-          tD={tD}
-          setTD={setTD}
-          currTaskId={currTaskId}
-          setCurrTaskId={setCurrTaskId}
-        />
+
+        <ul>
+          <h1>{completeContext ? 'completed' : 'incomplete'}</h1>
+          {tasksToSend.map(t => (
+            <>
+              <li
+                onClick={() => handleTaskDetails(t.id)}
+                key={t.id}>
+                {t.name}
+              </li>
+              <OpenModalButton
+                buttonText="Delete"
+                modalComponent={
+                <DeleteModal
+                listId={listId}
+                query={query}
+                setTD={setTD}
+                action={deleteTaskContext}
+                taskId={t.id} />}
+              />
+            </>
+          ))}
+        </ul>
+
       </div>
+
       {tD ? (
         <TaskDetail
+          setTD={setTD}
           currTaskId={currTaskId}
           setCurrTaskId={setCurrTaskId}
         />) : (
@@ -124,6 +162,7 @@ function TaskList({ context, tD, setTD }) {
           </div>
         </div>
       )}
+
     </div>
   )
 }
