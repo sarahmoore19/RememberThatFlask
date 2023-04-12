@@ -5,16 +5,14 @@ import { useParams } from 'react-router-dom';
 import * as taskActions from '../../store/tasks'
 import * as listActions from '../../store/lists';
 import * as searchActions from '../../store/search';
-import Complete from "../TasksPanel/complete";
 import Incomplete from "../TasksPanel/incomplete";
 import TaskDetail from '../RightPanel/taskDetail'
 
-function TaskList({ context, query }) {
+function TaskList({ context, tD, setTD }) {
   let dispatch = useDispatch()
-  let { listId } = useParams()
+  let { listId, query } = useParams()
   const [completeContext, setCompleteContext] = useState(false)
   const [currTaskId, setCurrTaskId] = useState(0)
-  const [tD, setTD] = useState(false)
   const [newTaskName, setNewTaskName] = useState('')
   let allTasks = Object.values(useSelector(state => state.tasks.allTasks))
   let list = useSelector(state => state.lists.singleList)
@@ -43,10 +41,7 @@ function TaskList({ context, query }) {
   }
 
   useEffect(() => {
-    if (context == 'search') {
-      console.log('--------------------', query)
-      dispatch(searchActions.allSearch(query))
-    }
+    dispatch(searchActions.allSearch(query))
     dispatch(taskActions.allTasks())
     dispatch(listActions.singleList(listId))
     setTD(false)
@@ -56,6 +51,9 @@ function TaskList({ context, query }) {
 
   let completedTasks = tasks.filter(task => task.completed)
   let incompleteTasks = tasks.filter(task => !task.completed)
+  let tasksToSend
+  if (completeContext) tasksToSend = completedTasks
+  else tasksToSend = incompleteTasks
 
   let createTask = async (e) => {
     e.preventDefault()
@@ -100,21 +98,14 @@ function TaskList({ context, query }) {
             </button>
           </form>
         </div>
-        {completeContext ? (
-          <Complete
-            tasks={completedTasks}
-            tD={tD}
-            setTD={setTD}
-            currTaskId={currTaskId}
-            setCurrTaskId={setCurrTaskId}
-          />) : (
-          <Incomplete
-            tasks={incompleteTasks}
-            tD={tD}
-            setTD={setTD}
-            currTaskId={currTaskId}
-            setCurrTaskId={setCurrTaskId}
-          />)}
+        <Incomplete
+          tasks={tasksToSend}
+          context={completeContext}
+          tD={tD}
+          setTD={setTD}
+          currTaskId={currTaskId}
+          setCurrTaskId={setCurrTaskId}
+        />
       </div>
       {tD ? (
         <TaskDetail

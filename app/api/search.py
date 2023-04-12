@@ -3,7 +3,6 @@ from app.models import db, User, List, Task
 from flask_login import current_user, login_required
 from .auth_routes import validation_errors_to_error_messages
 
-
 search = Blueprint('search', __name__)
 
 @search.route('')

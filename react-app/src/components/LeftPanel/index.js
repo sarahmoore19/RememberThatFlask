@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as taskActions from '../../store/tasks'
 import * as listActions from '../../store/lists';
-
 import OpenModalButton from '../OpenModalButton';
 import ListModal from '../ListModal';
 import DeleteModal from '../DeleteModal'
 
-function LeftPanel() {
+function LeftPanel({setTD}) {
 
   const dispatch = useDispatch();
   const lists = useSelector(state => state.lists.allLists);
@@ -17,6 +16,16 @@ function LeftPanel() {
   useEffect(() => {
     dispatch(listActions.allLists())
   }, [dispatch])
+
+  const singleTaskHandler = (listId) => {
+    setTD(false)
+    dispatch(listActions.singleList(listId))
+  }
+
+  const allTasksHandler = () => {
+    setTD(false)
+    dispatch(taskActions.allTasks())
+  }
 
   return (
     <div>
@@ -30,7 +39,7 @@ function LeftPanel() {
       <div className="border-red">
         <p>Inbox</p>
         <Link
-          onClick={() => dispatch(taskActions.allTasks())}
+          onClick={allTasksHandler}
           to={'/app/all'}
         >All Tasks</Link>
       </div>
@@ -45,7 +54,7 @@ function LeftPanel() {
           <li
             key={o.id}>
             <Link
-              onClick={() => dispatch(listActions.singleList(o.id))}
+              onClick={() => singleTaskHandler(o.id)}
               to={`/app/lists/${o.id}`}
             >
               {o.name}
@@ -64,7 +73,6 @@ function LeftPanel() {
       </ul>
     </div>
   )
-
 }
 
 export default LeftPanel;

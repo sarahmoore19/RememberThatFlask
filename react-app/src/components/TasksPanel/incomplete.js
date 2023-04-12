@@ -4,11 +4,10 @@ import { Route, StaticRouter, Switch } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import * as taskActions from '../../store/tasks'
 import * as listActions from '../../store/lists';
-
 import DeleteModal from '../DeleteModal';
 import OpenModalButton from '../OpenModalButton';
 
-function Incomplete({ tasks, tD, setTD, currTaskId, setCurrTaskId }) {
+function Incomplete({ context, tasks, tD, setTD, currTaskId, setCurrTaskId }) {
   let dispatch = useDispatch()
 
   const handleTaskDetails = async (taskId) => {
@@ -22,7 +21,7 @@ function Incomplete({ tasks, tD, setTD, currTaskId, setCurrTaskId }) {
 
   return (
     <ul>
-      <h1>incomplete</h1>
+      <h1>{context ? 'completed' : 'incomplete'}</h1>
       {tasks.map(t => (
         <>
           <li
@@ -32,7 +31,10 @@ function Incomplete({ tasks, tD, setTD, currTaskId, setCurrTaskId }) {
           </li>
           <OpenModalButton
             buttonText="Delete"
-            modalComponent={<DeleteModal action='deleteTask' taskId={t.id} />}
+            modalComponent={<DeleteModal
+            setTD={setTD}
+            action='deleteTask'
+            taskId={t.id} />}
           />
         </>
       ))}
