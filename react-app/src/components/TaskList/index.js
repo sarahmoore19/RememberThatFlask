@@ -63,11 +63,11 @@ function TaskList({ context, tD, setTD }) {
     e.preventDefault()
     setNewTaskName('')
     if (context == 'list') {
-      dispatch(taskActions.createTask({
+      await dispatch(taskActions.createTask({
         name: newTaskName,
         list_id: list.id
       }))
-      dispatch(listActions.singleList(list.id))
+      await dispatch(listActions.singleList(list.id))
     }
 
     else {
@@ -88,6 +88,11 @@ function TaskList({ context, tD, setTD }) {
     }
   }
 
+  const changeCompleted = async (taskId) => {
+    await dispatch(taskActions.changeCompleteStatus(taskId))
+    if (context == 'list') await dispatch(listActions.singleList(listId))
+    else if (context == 'search') await dispatch(searchActions.allSearch(query))
+  }
 
   return (
     <div className="border-red">
@@ -127,7 +132,7 @@ function TaskList({ context, tD, setTD }) {
                 {t.name}
               </li>
               <OpenModalButton
-                buttonText="Delete"
+                buttonText={<i class="fas fa-trash-alt"></i>}
                 modalComponent={
                 <DeleteModal
                 listId={listId}
@@ -136,6 +141,11 @@ function TaskList({ context, tD, setTD }) {
                 action={deleteTaskContext}
                 taskId={t.id} />}
               />
+              <button
+              onClick={() => changeCompleted(t.id)}
+              >
+                <i class="fas fa-check"></i>
+              </button>
             </>
           ))}
         </ul>
@@ -144,6 +154,7 @@ function TaskList({ context, tD, setTD }) {
 
       {tD ? (
         <TaskDetail
+          query={query}
           setTD={setTD}
           currTaskId={currTaskId}
           setCurrTaskId={setCurrTaskId}

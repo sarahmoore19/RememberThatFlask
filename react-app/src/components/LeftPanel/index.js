@@ -46,7 +46,7 @@ function LeftPanel({setTD}) {
       <ul className="border-red">
         <li><OpenModalButton
           id='id'
-          buttonText="CreateList"
+          buttonText={<i class="fas fa-plus"></i>}
           modalComponent={<ListModal action="create" />}
         /></li>
         <li>List</li>
@@ -60,7 +60,7 @@ function LeftPanel({setTD}) {
               {o.name}
             </Link>
             <OpenModalButton
-              buttonText="Delete"
+              buttonText={<i class="fas fa-trash-alt"></i>}
               modalComponent={
               <DeleteModal
               action='list'
@@ -68,7 +68,7 @@ function LeftPanel({setTD}) {
             />
             <OpenModalButton
               id='id'
-              buttonText="Rename"
+              buttonText={<i class="fas fa-edit"></i>}
               modalComponent={<ListModal action="rename" listId={o.id} />}
             />
           </li>
