@@ -38,12 +38,15 @@ function Navigation({ isLoaded }){
 					</li>
 				)}
 				{isLoaded && sessionUser && (
-					<li>
-						<form onSubmit={handleSearch}>
+					<li className='flx gap15p'>
+						<form onSubmit={handleSearch} className='bg-blue-0cc pad8p borderR-5p'>
+
+							<i class="fas fa-search mrg-r-8p"></i>
+
 							<input
 								value={query}
 								onChange={(e) => setQuery(e.target.value)}
-								placeholder='search bar'/>
+								className='bg-blue-0cc border-0'/>
 							<button
 								disabled={!query}
 								type='submit'>Search</button>

@@ -4,6 +4,7 @@
   --blue-fcc: #317fcc;
   --blue-dff: #009dff;
   --blue-ecc: #007ecc;
+  --blue-0cc: #3380cc;
   --gray-9d9: #d9d9d9;
   --white-ef2: #cadef2;
 
@@ -21,6 +22,10 @@ li {
 /*============= className ============*/
 .bg-blue-0bf {
   background-color: var(--blue-0bf);
+}
+
+.bg-blue-0cc {
+  background-color: var(--blue-0cc);
 }
 
 .bg-blue-fcc {
@@ -157,8 +162,16 @@ li {
   margin-right: auto;
 }
 
+.mrg-r-8p {
+  margin-right: 8px;
+}
+
 .mrg-t-0p {
   margin-top: 0px;
+}
+
+.pad8p {
+  padding: 8px;
 }
 
 .pad10p {
