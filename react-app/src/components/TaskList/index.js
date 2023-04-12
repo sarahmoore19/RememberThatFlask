@@ -80,62 +80,62 @@ function TaskList({ context, query }) {
       <div>
         <div>
           <button
-          onClick={() => setCompleteContext(false)}
+            onClick={() => setCompleteContext(false)}
           >Incomplete</button>
           <button
-          onClick={() => setCompleteContext(true)}
+            onClick={() => setCompleteContext(true)}
           >Complete</button>
         </div>
         <div>
           <form
-          onSubmit={createTask}>
+            onSubmit={createTask}>
             <input
-            value={newTaskName}
-            onChange={(e) => setNewTaskName(e.target.value)}
-            required
-            placeholder="New Task Name"/>
+              value={newTaskName}
+              onChange={(e) => setNewTaskName(e.target.value)}
+              required
+              placeholder="New Task Name" />
             <button
-            type='submit'>
+              type='submit'>
               Add Task
             </button>
           </form>
         </div>
         {completeContext ? (
-        <Complete
-        tasks={completedTasks}
-        tD={tD}
-        setTD={setTD}
-        currTaskId={currTaskId}
-        setCurrTaskId={setCurrTaskId}
-        /> ) : (
-        <Incomplete
-        tasks={incompleteTasks}
-        tD={tD}
-        setTD={setTD}
-        currTaskId={currTaskId}
-        setCurrTaskId={setCurrTaskId}
-        /> )}
+          <Complete
+            tasks={completedTasks}
+            tD={tD}
+            setTD={setTD}
+            currTaskId={currTaskId}
+            setCurrTaskId={setCurrTaskId}
+          />) : (
+          <Incomplete
+            tasks={incompleteTasks}
+            tD={tD}
+            setTD={setTD}
+            currTaskId={currTaskId}
+            setCurrTaskId={setCurrTaskId}
+          />)}
       </div>
       {tD ? (
-      <TaskDetail
-      currTaskId={currTaskId}
-      setCurrTaskId={setCurrTaskId}
-      />) : (
-      <div className="border-red">
-        <h2>{context == 'list' ? list.name : 'Tasks'}</h2>
-        <div>
+        <TaskDetail
+          currTaskId={currTaskId}
+          setCurrTaskId={setCurrTaskId}
+        />) : (
+        <div className="border-red">
+          <h2>{context == 'list' ? list.name : 'Tasks'}</h2>
           <div>
-            <div>{nNC}</div>
-            <div>tasks</div>
-          </div>
-          <div>
-            <div>{nC}</div>
-            <div>completed</div>
+            <div>
+              <div>{nNC}</div>
+              <div>tasks</div>
+            </div>
+            <div>
+              <div>{nC}</div>
+              <div>completed</div>
+            </div>
           </div>
         </div>
-      </div>
       )}
-   </div>
+    </div>
   )
 }
 
