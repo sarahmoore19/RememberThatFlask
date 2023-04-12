@@ -12,7 +12,6 @@ def allTasksSearch():
   id = current_user.id
   args = request.args
   search = args.get("search", default="", type=str)
-  print('...................', search)
   tasks = (Task.query.filter(Task.user_id == id)
   .filter(Task.name.like(f'%{search}%'))
   .all())

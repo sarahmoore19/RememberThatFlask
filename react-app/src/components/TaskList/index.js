@@ -15,6 +15,7 @@ function TaskList({ context, query }) {
   const [completeContext, setCompleteContext] = useState(false)
   const [currTaskId, setCurrTaskId] = useState(0)
   const [tD, setTD] = useState(false)
+  const [newTaskName, setNewTaskName] = useState('')
   let allTasks = Object.values(useSelector(state => state.tasks.allTasks))
   let list = useSelector(state => state.lists.singleList)
   let tasksNum = useSelector(state => state.tasks.numCompleted)
@@ -56,6 +57,24 @@ function TaskList({ context, query }) {
   let completedTasks = tasks.filter(task => task.completed)
   let incompleteTasks = tasks.filter(task => !task.completed)
 
+  let createTask = async (e) => {
+    e.preventDefault()
+    setNewTaskName('')
+    if (context == 'list') {
+      dispatch(taskActions.createTask({
+        name: newTaskName,
+        list_id: list.id
+      }))
+      dispatch(listActions.singleList(list.id))
+    }
+
+    else {
+      dispatch(taskActions.createTask({
+        name: newTaskName
+      }))
+    }
+  }
+
   return (
     <div className="border-red">
       <div>
@@ -66,6 +85,20 @@ function TaskList({ context, query }) {
           <button
           onClick={() => setCompleteContext(true)}
           >Complete</button>
+        </div>
+        <div>
+          <form
+          onSubmit={createTask}>
+            <input
+            value={newTaskName}
+            onChange={(e) => setNewTaskName(e.target.value)}
+            required
+            placeholder="New Task Name"/>
+            <button
+            type='submit'>
+              Add Task
+            </button>
+          </form>
         </div>
         {completeContext ? (
         <Complete
