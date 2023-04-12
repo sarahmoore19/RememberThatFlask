@@ -32,7 +32,7 @@ function DeleteModal({ query, listId, action, taskId, setTD }) {
 
   return (
     <div>
-        {action === 'deleteTask' ? <h2>Remove Task?</h2> : <h2>Remove List?</h2>}
+        {action === 'list' ? <h2>Remove List?</h2> : <h2>Remove Task?</h2>}
         <button onClick={handleSubmit}>
           Yes
         </button>

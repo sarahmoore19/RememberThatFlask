@@ -19,10 +19,10 @@ function Navigation({ isLoaded }){
 
 	return (
 		<div className='pad-tb-25p color-white bg-blue-0bf'>
-			<ul className='flx-jc-sa  mrg0p '>
-				<li>
+			<ul className='flx-jc-fe mrg20p '>
+				{/* <li>
 					<NavLink exact to="/" className={"color-white-ef2 fontS-125rem"}>Home</NavLink>
-				</li>
+				</li> */}
 				{isLoaded && !sessionUser && (
 					<li className='flx gap15p'>
 						<div>

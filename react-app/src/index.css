@@ -103,6 +103,10 @@ li {
   justify-content: space-around;
 }
 
+.flx-jc-fe {
+  display: flex;
+  justify-content: flex-end;
+}
 
 .flx-ac-center {
   align-content: center;
@@ -225,4 +229,12 @@ li {
 
 .width-fit {
   width: fit-content;
+}
+
+button:hover {
+  cursor: pointer
+}
+
+select:hover {
+  cursor: pointer
 }
