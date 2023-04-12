@@ -46,12 +46,14 @@ function Navigation({ isLoaded }){
 							<input
 								value={query}
 								onChange={(e) => setQuery(e.target.value)}
-								className='bg-blue-0cc border-0'/>
+								className='bg-blue-0cc border-0 color-white mrg-r-8p'/>
 							<button
 								disabled={!query}
 								type='submit'>Search</button>
 						</form>
-						<ProfileButton user={sessionUser} />
+						<div className='pos-rel'>
+							<ProfileButton user={sessionUser} />
+						</div>
 					</li>
 				)}
 			</ul>
