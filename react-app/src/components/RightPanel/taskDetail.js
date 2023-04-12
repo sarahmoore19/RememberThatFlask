@@ -14,7 +14,7 @@ function TaskDetail({currTaskId}) {
   }, [dispatch])
 
   return (
-    <div>task details component {task.name}</div>
+    <div className="border-red">task details component {task.name}</div>
   )
 }
 

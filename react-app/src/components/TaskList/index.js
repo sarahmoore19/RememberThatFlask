@@ -57,7 +57,7 @@ function TaskList({ context, query }) {
   let incompleteTasks = tasks.filter(task => !task.completed)
 
   return (
-    <div>
+    <div className="border-red">
       <div>
         <div>
           <button
@@ -88,7 +88,7 @@ function TaskList({ context, query }) {
       currTaskId={currTaskId}
       setCurrTaskId={setCurrTaskId}
       />) : (
-      <div>
+      <div className="border-red">
         <h2>{context == 'list' ? list.name : 'Tasks'}</h2>
         <div>
           <div>
