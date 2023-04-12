@@ -26,15 +26,20 @@ function TaskDetail({ currTaskId }) {
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value)
-    dispatch(taskActions.renameTask(currTaskId, { name: inputValue }))
+    // dispatch(taskActions.renameTask(currTaskId, { name: event.target.value }))
   };
+
+  const handleOnBlur = (event) => {
+    dispatch(taskActions.renameTask(currTaskId, { name: event.target.value }))
+    dispatch(taskActions.singleTask(currTaskId))
+  }
 
 
   return (
     <>
       <div className="border-red">task details component {task.name}</div>
       <div>
-        <input type="text" value={inputValue} onChange={handleInputChange} />
+        <input type="text" value={inputValue} onChange={handleInputChange} onBlur={handleOnBlur} />
       </div>
     </>
   )
