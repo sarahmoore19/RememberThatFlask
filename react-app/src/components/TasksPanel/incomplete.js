@@ -8,13 +8,13 @@ import * as listActions from '../../store/lists';
 import DeleteModal from '../DeleteModal';
 import OpenModalButton from '../OpenModalButton';
 
-function Incomplete({tasks, tD, setTD, currTaskId, setCurrTaskId}) {
+function Incomplete({ tasks, tD, setTD, currTaskId, setCurrTaskId }) {
   let dispatch = useDispatch()
 
-  const handleTaskDetails = (taskId) => {
+  const handleTaskDetails = async (taskId) => {
     if (taskId == currTaskId) setTD(!tD)
     else {
-      dispatch(taskActions.singleTask(taskId))
+      await dispatch(taskActions.singleTask(taskId))
       setCurrTaskId(taskId)
       setTD(true)
     }
@@ -25,15 +25,15 @@ function Incomplete({tasks, tD, setTD, currTaskId, setCurrTaskId}) {
       <h1>incomplete</h1>
       {tasks.map(t => (
         <>
-        <li
-        onClick={() => handleTaskDetails(t.id)}
-        key={t.id}>
-          {t.name}
-        </li>
-        <OpenModalButton
-              buttonText="Delete"
-              modalComponent={<DeleteModal action= 'deleteTask' taskId={t.id} />}
-            />
+          <li
+            onClick={() => handleTaskDetails(t.id)}
+            key={t.id}>
+            {t.name}
+          </li>
+          <OpenModalButton
+            buttonText="Delete"
+            modalComponent={<DeleteModal action='deleteTask' taskId={t.id} />}
+          />
         </>
       ))}
     </ul>

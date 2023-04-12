@@ -61,48 +61,48 @@ function TaskList({ context, query }) {
       <div>
         <div>
           <button
-          onClick={() => setCompleteContext(false)}
+            onClick={() => setCompleteContext(false)}
           >Incomplete</button>
           <button
-          onClick={() => setCompleteContext(true)}
+            onClick={() => setCompleteContext(true)}
           >Complete</button>
         </div>
         {completeContext ? (
-        <Complete
-        tasks={completedTasks}
-        tD={tD}
-        setTD={setTD}
-        currTaskId={currTaskId}
-        setCurrTaskId={setCurrTaskId}
-        /> ) : (
-        <Incomplete
-        tasks={incompleteTasks}
-        tD={tD}
-        setTD={setTD}
-        currTaskId={currTaskId}
-        setCurrTaskId={setCurrTaskId}
-        /> )}
+          <Complete
+            tasks={completedTasks}
+            tD={tD}
+            setTD={setTD}
+            currTaskId={currTaskId}
+            setCurrTaskId={setCurrTaskId}
+          />) : (
+          <Incomplete
+            tasks={incompleteTasks}
+            tD={tD}
+            setTD={setTD}
+            currTaskId={currTaskId}
+            setCurrTaskId={setCurrTaskId}
+          />)}
       </div>
       {tD ? (
-      <TaskDetail
-      currTaskId={currTaskId}
-      setCurrTaskId={setCurrTaskId}
-      />) : (
-      <div>
-        <h2>{context == 'list' ? list.name : 'Tasks'}</h2>
+        <TaskDetail
+          currTaskId={currTaskId}
+          setCurrTaskId={setCurrTaskId}
+        />) : (
         <div>
+          <h2>{context == 'list' ? list.name : 'Tasks'}</h2>
           <div>
-            <div>{nNC}</div>
-            <div>tasks</div>
-          </div>
-          <div>
-            <div>{nC}</div>
-            <div>completed</div>
+            <div>
+              <div>{nNC}</div>
+              <div>tasks</div>
+            </div>
+            <div>
+              <div>{nC}</div>
+              <div>completed</div>
+            </div>
           </div>
         </div>
-      </div>
       )}
-   </div>
+    </div>
   )
 }
 
