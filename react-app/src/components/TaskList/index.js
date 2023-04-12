@@ -49,11 +49,9 @@ function TaskList({ context, tD, setTD }) {
 
   if (!tasks) return null
 
-  let completedTasks = tasks.filter(task => task.completed)
-  let incompleteTasks = tasks.filter(task => !task.completed)
   let tasksToSend
-  if (completeContext) tasksToSend = completedTasks
-  else tasksToSend = incompleteTasks
+  if (completeContext) tasksToSend = tasks.filter(task => task.completed)
+  else tasksToSend = tasks.filter(task => !task.completed)
 
   let createTask = async (e) => {
     e.preventDefault()
