@@ -64,7 +64,8 @@ function TaskDetail({ query, currTaskId, setTD }) {
         <span
         className="tooltiptext">
         Change List</span>
-        {list?.name + ' ' || 'Inbox '}
+        {list?.name || 'Inbox'}
+        {' '}
         <select
         onChange={handleListChange}>
           <option></option>
