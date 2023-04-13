@@ -38,8 +38,8 @@
 }
 
 
-.width-400p {
-    width: 400px;
+.width-387p {
+    width: 387px;
 }
 
 
@@ -58,4 +58,29 @@
 ul {
     padding: 5px;
     margin: 1px 8px;
+}
+
+.complete-button {
+    border: none;
+}
+
+.summary {
+    margin: 20px;
+}
+
+.numContainer {
+    display: flex;
+}
+
+.numCon {
+  width: 75px;
+  margin-right: 10px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.num {
+  font-size: 20px;
+  font-weight: bold;
 }

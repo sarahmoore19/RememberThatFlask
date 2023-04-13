@@ -57,7 +57,7 @@ function LeftPanel({setTD}) {
         </li>
         {arr.map(o => (
           <li
-            className='one-list'
+          className='one-list bg-blue-7ef-hover'
             key={o.id}>
             <div>
               <Link

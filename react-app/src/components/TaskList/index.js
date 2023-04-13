@@ -96,25 +96,30 @@ function TaskList({ context, tD, setTD }) {
   }
 
   return (
-    <div className="border-red grid-1-1">
-      <div id="allpanel">
+    <div
+    className="grid-1-1">
+      <div
+      className="border-left-black"
+      id="allpanel">
         <div id="outter1">
           <div className="status">
             <button
-              className="height-26px bg-transp fontS-115rem"
+              className=" border-bottom-black border-left-black complete-button bg-blue-dff height-26px bg-transp fontS-115rem"
               onClick={() => setCompleteContext(false)}
             >To Do</button>
             <button
-              className="height-26px bg-transp fontS-115rem"
+              className=" border-bottom-black border-left-black complete-button bg-blue-dff height-26px bg-transp fontS-115rem"
               onClick={() => setCompleteContext(true)}
             >Completed</button>
           </div>
         </div>
 
-        <div id="outter2">
+        <div
+        className="padding-left-13px padding-top-13px"
+        id="outter2">
 
           <form
-            className="width-400p"
+            className="width-387p"
             onSubmit={createTask}>
             <div className="flx">
               <input
@@ -134,7 +139,8 @@ function TaskList({ context, tD, setTD }) {
 
         </div>
 
-        <div id="outter3">
+        <div
+        id="outter3">
           <ul>
             <h1 className="fontS-115rem">{completeContext ? 'Completed' : 'To Do'}</h1>
 
@@ -170,7 +176,7 @@ function TaskList({ context, tD, setTD }) {
 
       </div>
 
-      <div className="border-blue">
+      <div className="border-left-black">
         {tD ? (
           <TaskDetail
             query={query}
@@ -178,21 +184,31 @@ function TaskList({ context, tD, setTD }) {
             currTaskId={currTaskId}
             setCurrTaskId={setCurrTaskId}
           />) : (
-          <div className="border-red">
+          <div
+          className="summary">
             <h2>
               {context == 'list' && list.name}
               {context == 'allTasks' && 'All Tasks'}
               {context == 'search' && 'Search Results'}
             </h2>
-            <div>
-              <div>
-                <div>{nNC}</div>
-                <div>tasks</div>
-              </div>
-              <div>
-                <div>{nC}</div>
-                <div>completed</div>
-              </div>
+            <div
+            className="numContainer"
+            >
+              <span
+              className="numCon"
+              >
+                <div
+                className="num"
+                >{nNC}</div>
+                <div>Incomplete</div>
+              </span>
+              <span
+              className="numCon">
+                <div
+                className="num"
+                >{nC}</div>
+                <div>Complete</div>
+              </span>
             </div>
           </div>
         )}

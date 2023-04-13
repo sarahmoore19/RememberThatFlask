@@ -44,6 +44,7 @@ li {
 
 .bg-blue-dff:hover {
   background-color: var(--blue-ecc);
+  color: white
 }
 
 .bg-blue-7ef-hover:hover {
@@ -70,8 +71,8 @@ li {
   border: 2px orange solid;
 }
 
-.border-red {
-  border: 2px red solid;
+.border-left-black {
+  border-left: 1px solid black;
 }
 
 .border-gray-9d9 {
@@ -285,6 +286,14 @@ li {
   padding-bottom: 25px;
 }
 
+.padding-left-13px {
+  padding-left: 13px;
+}
+
+.padding-top-13px {
+  padding-top: 13px
+}
+
 .pos-rel {
   position: relative;
 }
@@ -332,4 +341,8 @@ select:hover {
 .va-center {
   display: flex;
   align-items: center;
+}
+
+.border-bottom-black {
+  border-bottom: 1px solid black;
 }
