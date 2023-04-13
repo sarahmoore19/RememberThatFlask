@@ -2,6 +2,7 @@
 :root {
   --blue-0bf: #0060bf;
   --blue-7f5: #d7e7f5;
+  --blue-7ef: #bfd7ef;
   --blue-fcc: #317fcc;
   --blue-dff: #009dff;
   --blue-ecc: #007ecc;
@@ -37,8 +38,16 @@ li {
   background-color: var(--blue-dff);
 }
 
+.bg-blue-7f5 {
+  background-color: var(--blue-7f5);
+}
+
 .bg-blue-dff:hover {
   background-color: var(--blue-ecc);
+}
+
+.bg-blue-7ef-hover:hover {
+  background-color: var(--blue-7ef);
 }
 
 .bg-blue-7f5-hover:hover {
@@ -51,6 +60,14 @@ li {
 
 .bg-white {
   background-color: white;
+}
+
+.border-blue {
+  border: 2px blue solid;
+}
+
+.border-orange {
+  border: 2px orange solid;
 }
 
 .border-red {
@@ -119,6 +136,16 @@ li {
   justify-content: space-around;
 }
 
+.flx-jc-sb {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flx-jc-se {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .flx-jc-fe {
   display: flex;
   justify-content: flex-end;
@@ -169,6 +196,15 @@ li {
   grid-template-columns: 1fr 1fr;
 }
 
+.grid-2-8 {
+  display: grid;
+  grid-template-columns: 2fr 8fr;
+}
+
+.height-88vh {
+  height: 88vh;
+}
+
 .height-fit {
   height: fit-content;
 }
@@ -184,6 +220,18 @@ li {
 .mrg-lr-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.mrg-l-10p {
+  margin-left: 10px;
+}
+
+.mrg-l-7rem {
+  margin-left: 7rem;
+}
+
+.mrg-r-3rem {
+  margin-right: 3rem;
 }
 
 .mrg-r-8p {
@@ -237,6 +285,10 @@ li {
 
 .pos-abs {
   position: absolute;
+}
+
+.right-0p {
+  right: 0px
 }
 
 .txt-ali-center {
