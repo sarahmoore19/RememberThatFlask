@@ -131,7 +131,7 @@ function TaskList({ context, tD, setTD }) {
         </div>
 
         <ul>
-          <h1>{completeContext ? 'completed' : 'incomplete'}</h1>
+          <h1>{completeContext ? 'Completed' : 'To Do'}</h1>
           {tasksToSend.map(t => (
             <>
               <li
