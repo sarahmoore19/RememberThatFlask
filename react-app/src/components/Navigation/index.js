@@ -25,6 +25,9 @@ function Navigation({ isLoaded }){
 						<NavLink exact to="/" className={"color-white-ef2 fontS-125rem"}>Home</NavLink>
 					</li>
 					<li className='flx gap15p'>
+						<a href="#about" className="color-white-ef2 fontS-125rem">
+							About
+						</a>
 						<div>
 							<NavLink to='/login' className={"color-white-ef2 fontS-125rem"}>
 								Login

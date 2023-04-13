@@ -131,6 +131,11 @@ li {
   flex-direction: column;
 }
 
+.flx-jc-center {
+  display: flex;
+  justify-content: center;
+}
+
 .flx-jc-sa {
   display: flex;
   justify-content: space-around;
