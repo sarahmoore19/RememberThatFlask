@@ -1,6 +1,5 @@
 .left-panel {
   margin: 20px;
-  min-width: 165.44px;
 }
 ul.list-name {
   padding-left: 0px;
@@ -20,7 +19,11 @@ ul.list-name {
   margin-top: 12px;
 }
 
-@media screen and (max-width: 740px) {
+.one-list a {
+  margin-right: 15px
+}
+
+@media screen and (max-width: 950px) {
   .one-list {
     display: block;
   }
