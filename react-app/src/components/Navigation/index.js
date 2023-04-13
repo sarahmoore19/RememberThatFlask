@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import * as searchActions from '../../store/search';
@@ -41,8 +41,17 @@ function Navigation({ isLoaded }){
 					</li>
 				</ul>
 				)}
+
 				{isLoaded && sessionUser && (
 					<div className='flx-jc-sb mrg-l-7rem mrg-r-3rem'>
+						<Link
+						className='color-white fontS-200rem'
+						to='/'
+						>Home</Link>
+						<Link
+						className='color-white fontS-200rem'
+						to='/app/all'
+						>Dashboard</Link>
 						<div className='flx'>
 							<form onSubmit={handleSearch} className='bg-blue-0cc pad8p borderR-5p'>
 
