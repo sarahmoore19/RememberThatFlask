@@ -135,6 +135,7 @@ function TaskList({ context, tD, setTD }) {
           {tasksToSend.map(t => (
             <>
               <li
+                className="bg-blue-7ef-hover"
                 onClick={() => handleTaskDetails(t.id)}
                 key={t.id}>
                 {t.name}

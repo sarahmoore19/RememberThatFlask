@@ -7,6 +7,7 @@ import * as listActions from '../../store/lists';
 import * as searchActions from '../../store/search';
 import TaskList from "../TaskList";
 
+
 function TaskDetail({ query, currTaskId, setTD }) {
   let dispatch = useDispatch()
   let task = useSelector(state => state.tasks.singleTask)
@@ -49,7 +50,13 @@ function TaskDetail({ query, currTaskId, setTD }) {
     <>
       <h1 className="border-red">{task.name}</h1>
       <div>
-        <input type="text" value={inputValue} onChange={handleInputChange} onBlur={handleOnBlur} />
+        <input
+        // data-tooltip-id="rename-tooltip"
+        // data-tooltip-content="Hello world!"
+        type="text"
+        value={inputValue}
+        onChange={handleInputChange}
+        onBlur={handleOnBlur} />
       </div>
       <div>
         {list?.name || 'Inbox'}
@@ -62,6 +69,7 @@ function TaskDetail({ query, currTaskId, setTD }) {
           ))}
         </select>
       </div>
+      {/* <Tooltip id="rename-tooltip" /> */}
     </>
   )
 }
