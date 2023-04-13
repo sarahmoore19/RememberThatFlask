@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink, useHistory } from 'react-router-dom';
 import * as listActions from '../../store/lists';
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -6,6 +7,7 @@ import * as taskActions from '../../store/tasks';
 import * as searchActions from '../../store/search';
 
 function DeleteModal({ query, listId, action, taskId, setTD }) {
+  const history = useHistory()
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
@@ -13,7 +15,10 @@ function DeleteModal({ query, listId, action, taskId, setTD }) {
     console.log(action)
     e.preventDefault()
 
-    if (action == 'list') dispatch(listActions.deleteList(listId))
+    if (action == 'list') {
+      dispatch(listActions.deleteList(listId))
+      history.push('/app/all')
+    }
 
     else {
       setTD(false)

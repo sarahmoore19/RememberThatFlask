@@ -33,7 +33,7 @@ function SignupFormPage() {
 
   return (
     <div className="grid-1-1">
-      <div className="bg-blue-fcc color-gray-9d9">
+      <div className="bg-blue-fcc color-gray-9d9 height-88vh">
         <p className="fontS-200rem fontW-600 width-max-450p mrg-lr-auto">
           Join millions of people getting more organized and productive!
         </p>

@@ -19,12 +19,15 @@ function Navigation({ isLoaded }){
 
 	return (
 		<div className='pad-tb-25p color-white bg-blue-0bf'>
-			<ul className='flx-jc-fe mrg20p '>
-				{/* <li>
-					<NavLink exact to="/" className={"color-white-ef2 fontS-125rem"}>Home</NavLink>
-				</li> */}
 				{isLoaded && !sessionUser && (
+					<ul className='flx-jc-sa mrg20p '>
+					<li>
+						<NavLink exact to="/" className={"color-white-ef2 fontS-125rem"}>Home</NavLink>
+					</li>
 					<li className='flx gap15p'>
+						<a href="#about" className="color-white-ef2 fontS-125rem">
+							About
+						</a>
 						<div>
 							<NavLink to='/login' className={"color-white-ef2 fontS-125rem"}>
 								Login
@@ -36,27 +39,31 @@ function Navigation({ isLoaded }){
 							</NavLink>
 						</div>
 					</li>
+				</ul>
 				)}
 				{isLoaded && sessionUser && (
-					<li className='flx gap15p'>
-						<form onSubmit={handleSearch} className='bg-blue-0cc pad8p borderR-5p'>
+					<div className='flx-jc-sb mrg-l-7rem mrg-r-3rem'>
+						<div className='flx'>
+							<form onSubmit={handleSearch} className='bg-blue-0cc pad8p borderR-5p'>
 
-							<i className="fas fa-search mrg-r-8p"></i>
+								<i className="fas fa-search mrg-r-8p"></i>
 
-							<input
-								value={query}
-								onChange={(e) => setQuery(e.target.value)}
-								className='bg-blue-0cc border-0 color-white mrg-r-8p'/>
-							<button
-								disabled={!query}
-								type='submit'>Search</button>
-						</form>
+								<input
+									value={query}
+									onChange={(e) => setQuery(e.target.value)}
+									className='bg-blue-0cc border-0 color-white mrg-r-8p'/>
+								<button
+									disabled={!query}
+									type='submit'>Search</button>
+							</form>
+
+						</div>
 						<div className='pos-rel'>
 							<ProfileButton user={sessionUser} />
 						</div>
-					</li>
+
+					</div>
 				)}
-			</ul>
 
 		</div>
 	);

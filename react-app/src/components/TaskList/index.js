@@ -8,6 +8,7 @@ import * as searchActions from '../../store/search';
 import TaskDetail from '../RightPanel/taskDetail'
 import DeleteModal from '../DeleteModal';
 import OpenModalButton from '../OpenModalButton';
+import './tasklist.css'
 
 function TaskList({ context, tD, setTD }) {
   let dispatch = useDispatch()
@@ -47,7 +48,7 @@ function TaskList({ context, tD, setTD }) {
 
   useEffect(() => {
     if (context == 'list') dispatch(listActions.singleList(listId))
-    else if (context == 'allTasks')  dispatch(taskActions.allTasks())
+    else if (context == 'allTasks') dispatch(taskActions.allTasks())
     else dispatch(searchActions.allSearch(query))
 
     setTD(false)
@@ -95,38 +96,46 @@ function TaskList({ context, tD, setTD }) {
   }
 
   return (
-    <div className="border-red">
+    <div className="border-red grid-1-1">
       <div>
-
-        <div>
-          <button
-            onClick={() => setCompleteContext(false)}
-          >Incomplete</button>
-          <button
-            onClick={() => setCompleteContext(true)}
-          >Complete</button>
+        <div className="outter1">
+          <div className="status">
+            <button
+              className="height-26px bg-transp border-none"
+              onClick={() => setCompleteContext(false)}
+            >To Do</button>
+            <button
+              className="height-26px bg-transp border-none"
+              onClick={() => setCompleteContext(true)}
+            >Completed</button>
+          </div>
         </div>
 
-        <div>
-          <form
-            onSubmit={createTask}>
-            <input
-              value={newTaskName}
-              onChange={(e) => setNewTaskName(e.target.value)}
-              required
-              placeholder="New Task Name" />
-            <button
-              type='submit'>
-              Add Task
-            </button>
-          </form>
+        <div className="outter2">
+          <div className="addtaskbar">
+            <form
+              onSubmit={createTask}>
+              <input
+                value={newTaskName}
+                onChange={(e) => setNewTaskName(e.target.value)}
+                required
+                placeholder="New Task Name" />
+              <button
+                type='submit'
+                className="height-26px"
+              >
+                Add Task
+              </button>
+            </form>
+          </div>
         </div>
 
         <ul>
-          <h1>{completeContext ? 'completed' : 'incomplete'}</h1>
+          <h1>{completeContext ? 'Completed' : 'To Do'}</h1>
           {tasksToSend.map(t => (
             <>
               <li
+                className="bg-blue-7ef-hover"
                 onClick={() => handleTaskDetails(t.id)}
                 key={t.id}>
                 {t.name}
@@ -134,15 +143,15 @@ function TaskList({ context, tD, setTD }) {
               <OpenModalButton
                 buttonText={<i class="fas fa-trash-alt"></i>}
                 modalComponent={
-                <DeleteModal
-                listId={listId}
-                query={query}
-                setTD={setTD}
-                action={deleteTaskContext}
-                taskId={t.id} />}
+                  <DeleteModal
+                    listId={listId}
+                    query={query}
+                    setTD={setTD}
+                    action={deleteTaskContext}
+                    taskId={t.id} />}
               />
               <button
-              onClick={() => changeCompleted(t.id)}
+                onClick={() => changeCompleted(t.id)}
               >
                 <i class="fas fa-check"></i>
               </button>
@@ -152,27 +161,33 @@ function TaskList({ context, tD, setTD }) {
 
       </div>
 
-      {tD ? (
-        <TaskDetail
-          query={query}
-          setTD={setTD}
-          currTaskId={currTaskId}
-          setCurrTaskId={setCurrTaskId}
-        />) : (
-        <div className="border-red">
-          <h2>{context == 'list' ? list.name : 'Tasks'}</h2>
-          <div>
+      <div className="border-blue">
+        {tD ? (
+          <TaskDetail
+            query={query}
+            setTD={setTD}
+            currTaskId={currTaskId}
+            setCurrTaskId={setCurrTaskId}
+          />) : (
+          <div className="border-red">
+            <h2>
+              {context == 'list' && list.name}
+              {context == 'allTasks' && 'All Tasks'}
+              {context == 'search' && 'Search Results'}
+            </h2>
             <div>
-              <div>{nNC}</div>
-              <div>tasks</div>
-            </div>
-            <div>
-              <div>{nC}</div>
-              <div>completed</div>
+              <div>
+                <div>{nNC}</div>
+                <div>tasks</div>
+              </div>
+              <div>
+                <div>{nC}</div>
+                <div>completed</div>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
     </div>
   )
