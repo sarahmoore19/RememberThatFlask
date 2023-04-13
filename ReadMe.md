@@ -8,7 +8,7 @@ You can create/rename/update/delete lists and create/update/delete tasks.
 - Redux - A predictable, centralized state container for JavaScript apps.
 - Python - A programming language for building backend data manipulation.
 - SQLAlchemy - A library that facilitates the communication between Python programs and databases
--Database: Development: SQLite3
+- Database: Development: SQLite3
 
 # Screenshot of Project
 
