@@ -328,3 +328,8 @@ select:hover {
 .width-100per {
   width: 100%;
 }
+
+.va-center {
+  display: flex;
+  align-items: center;
+}
