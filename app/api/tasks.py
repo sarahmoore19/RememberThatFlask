@@ -33,7 +33,7 @@ def oneTask(id):
   return taskDict
 
 # create a task
-@tasks.route('/', methods=['POST'])
+@tasks.route('', methods=['POST'])
 @login_required
 def createTask():
   form = TaskForm()
@@ -75,9 +75,10 @@ def completeOrIncompleteTask(id):
 # add a task to a list
 @tasks.route('/<int:task_id>/list', methods=['PUT'])
 @login_required
-def addTasktoList(list_id, task_id):
+def addTasktoList(task_id):
+  listId = request.json['listId']
   task = Task.query.get(task_id)
-  task.list_id = list_id
+  task.list_id = listId
   db.session.commit()
   return task.to_dict()
 

@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as taskActions from '../../store/tasks'
 import * as listActions from '../../store/lists';
-
 import OpenModalButton from '../OpenModalButton';
 import ListModal from '../ListModal';
 import DeleteModal from '../DeleteModal'
 
-function LeftPanel() {
+function LeftPanel({setTD}) {
 
   const dispatch = useDispatch();
   const lists = useSelector(state => state.lists.allLists);
@@ -17,6 +16,16 @@ function LeftPanel() {
   useEffect(() => {
     dispatch(listActions.allLists())
   }, [dispatch])
+
+  const singleTaskHandler = (listId) => {
+    setTD(false)
+    dispatch(listActions.singleList(listId))
+  }
+
+  const allTasksHandler = () => {
+    setTD(false)
+    dispatch(taskActions.allTasks())
+  }
 
   return (
     <div>
@@ -30,14 +39,14 @@ function LeftPanel() {
       <div className="border-red">
         <p>Inbox</p>
         <Link
-          onClick={() => dispatch(taskActions.allTasks())}
+          onClick={allTasksHandler}
           to={'/app/all'}
         >All Tasks</Link>
       </div>
       <ul className="border-red">
         <li><OpenModalButton
           id='id'
-          buttonText="CreateList"
+          buttonText={<i class="fas fa-plus"></i>}
           modalComponent={<ListModal action="create" />}
         /></li>
         <li>List</li>
@@ -45,18 +54,21 @@ function LeftPanel() {
           <li
             key={o.id}>
             <Link
-              onClick={() => dispatch(listActions.singleList(o.id))}
+              onClick={() => singleTaskHandler(o.id)}
               to={`/app/lists/${o.id}`}
             >
               {o.name}
             </Link>
             <OpenModalButton
-              buttonText="Delete"
-              modalComponent={<DeleteModal listId={o.id} />}
+              buttonText={<i class="fas fa-trash-alt"></i>}
+              modalComponent={
+              <DeleteModal
+              action='list'
+              listId={o.id} />}
             />
             <OpenModalButton
               id='id'
-              buttonText="Rename"
+              buttonText={<i class="fas fa-edit"></i>}
               modalComponent={<ListModal action="rename" listId={o.id} />}
             />
           </li>
@@ -64,7 +76,6 @@ function LeftPanel() {
       </ul>
     </div>
   )
-
 }
 
 export default LeftPanel;

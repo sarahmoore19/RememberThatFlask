@@ -19,10 +19,10 @@ function Navigation({ isLoaded }){
 
 	return (
 		<div className='pad-tb-25p color-white bg-blue-0bf'>
-			<ul className='flx-jc-sa  mrg0p '>
-				<li>
+			<ul className='flx-jc-fe mrg20p '>
+				{/* <li>
 					<NavLink exact to="/" className={"color-white-ef2 fontS-125rem"}>Home</NavLink>
-				</li>
+				</li> */}
 				{isLoaded && !sessionUser && (
 					<li className='flx gap15p'>
 						<div>
@@ -38,17 +38,22 @@ function Navigation({ isLoaded }){
 					</li>
 				)}
 				{isLoaded && sessionUser && (
-					<li>
-						<form onSubmit={handleSearch}>
+					<li className='flx gap15p'>
+						<form onSubmit={handleSearch} className='bg-blue-0cc pad8p borderR-5p'>
+
+							<i className="fas fa-search mrg-r-8p"></i>
+
 							<input
 								value={query}
 								onChange={(e) => setQuery(e.target.value)}
-								placeholder='search bar'/>
+								className='bg-blue-0cc border-0 color-white mrg-r-8p'/>
 							<button
 								disabled={!query}
 								type='submit'>Search</button>
 						</form>
-						<ProfileButton user={sessionUser} />
+						<div className='pos-rel'>
+							<ProfileButton user={sessionUser} />
+						</div>
 					</li>
 				)}
 			</ul>

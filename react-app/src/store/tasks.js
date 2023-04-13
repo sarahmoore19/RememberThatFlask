@@ -200,6 +200,7 @@ const tasksReducer = (state = initialState, action) => {
       return newState6
     case DELETETASK:
       let newState7 = {...state, allTasks: { ...state.allTasks }, singleTask: {...state.singleTask} };
+      console.log('------------------', action.obj)
       let task5 = action.obj
       if (task5.completed) newState7.numCompleted -= 1
       else newState7.numNotCompleted -= 1
