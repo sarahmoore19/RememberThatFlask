@@ -2,13 +2,7 @@
   margin: 20px;
   min-width: 165.44px;
 }
-
-.inbox {
-  border: 5px solid #e6e6e6;
-  margin-bottom: 10px;
-}
 ul.list-name {
-  border: 5px solid #e6e6e6;
   padding-left: 0px;
 }
 
@@ -16,6 +10,7 @@ ul.list-name {
   display: flex;
   justify-content: space-between;
   flex-wrap: no wrap;
+  font-weight: bold;
 }
 
 .one-list {
