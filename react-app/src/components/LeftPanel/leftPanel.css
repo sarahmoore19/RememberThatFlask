@@ -1,5 +1,6 @@
 .left-panel {
-  margin: 20px
+  margin: 20px;
+  min-width: 165.44px;
 }
 
 .inbox {
@@ -8,11 +9,7 @@
 }
 ul.list-name {
   border: 5px solid #e6e6e6;
-  padding-left: 0px
-}
-
-ul.list-name a {
-  margin-right:25px
+  padding-left: 0px;
 }
 
 .list-create {
