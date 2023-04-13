@@ -22,7 +22,7 @@ function Navigation({ isLoaded }){
 				{isLoaded && !sessionUser && (
 					<ul className='flx-jc-fe mrg20p '>
 					<li className='flx gap15p'>
-						<a href="#about" className="color-white-ef2 fontS-125rem">
+						<a href="/#about" className="color-white-ef2 fontS-125rem">
 							About
 						</a>
 						<div>
