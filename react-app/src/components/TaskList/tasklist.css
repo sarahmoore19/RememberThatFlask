@@ -1,3 +1,14 @@
+/*============= id ============*/
+#outter2 {
+    text-align: center;
+}
+
+#allpanel {
+    display: grid;
+    grid-template-rows: 0fr 0fr 10fr;
+}
+
+
 /*============= className ============*/
 
 .status {
@@ -28,4 +39,14 @@
     border-top: solid 0.5px grey;
     display: grid;
     grid-template-columns: 5fr 2.5fr 2.5fr;
+}
+
+
+/*============ html tag =============*/
+
+
+
+ul {
+    padding: 5px;
+    margin: 1px 8px;
 }
