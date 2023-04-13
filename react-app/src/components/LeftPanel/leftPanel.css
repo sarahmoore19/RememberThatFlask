@@ -1,0 +1,35 @@
+.left-panel {
+  margin: 20px
+}
+
+.inbox {
+  border: 5px solid #e6e6e6;
+}
+
+ul.list-name {
+  border: 5px solid #e6e6e6;
+  padding-left: 0px
+}
+
+ul.list-name a {
+  margin-right:25px
+}
+
+.list-create {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: no wrap;
+}
+
+.one-list {
+  display: flex;
+  flex-wrap: no wrap;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+@media screen and (max-width: 740px) {
+  .one-list {
+    display: block;
+  }
+}
