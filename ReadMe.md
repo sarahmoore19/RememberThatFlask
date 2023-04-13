@@ -53,3 +53,9 @@ You can create/rename/update/delete lists and create/update/delete tasks.
       ```bash
       npm start
       ```
+
+# Project Developers
+- Dongliang Li
+- Sarah Moore
+- Seng Wang
+- Penny Wang
