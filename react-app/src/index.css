@@ -53,6 +53,14 @@ li {
   background-color: white;
 }
 
+.border-blue {
+  border: 2px blue solid;
+}
+
+.border-orange {
+  border: 2px orange solid;
+}
+
 .border-red {
   border: 2px red solid;
 }

@@ -95,7 +95,7 @@ function TaskList({ context, tD, setTD }) {
   }
 
   return (
-    <div className="border-red">
+    <div className="border-red grid-1-1">
       <div>
 
         <div>
@@ -152,27 +152,29 @@ function TaskList({ context, tD, setTD }) {
 
       </div>
 
-      {tD ? (
-        <TaskDetail
-          query={query}
-          setTD={setTD}
-          currTaskId={currTaskId}
-          setCurrTaskId={setCurrTaskId}
-        />) : (
-        <div className="border-red">
-          <h2>{context == 'list' ? list.name : 'Tasks'}</h2>
-          <div>
+      <div className="border-blue">
+        {tD ? (
+          <TaskDetail
+            query={query}
+            setTD={setTD}
+            currTaskId={currTaskId}
+            setCurrTaskId={setCurrTaskId}
+          />) : (
+          <div className="border-red">
+            <h2>{context == 'list' ? list.name : 'Tasks'}</h2>
             <div>
-              <div>{nNC}</div>
-              <div>tasks</div>
-            </div>
-            <div>
-              <div>{nC}</div>
-              <div>completed</div>
+              <div>
+                <div>{nNC}</div>
+                <div>tasks</div>
+              </div>
+              <div>
+                <div>{nC}</div>
+                <div>completed</div>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
     </div>
   )
