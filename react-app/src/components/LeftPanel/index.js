@@ -38,11 +38,17 @@ function LeftPanel({setTD}) {
           src="https://static.vecteezy.com/system/resources/previews/002/652/150/original/cute-deer-wild-animal-character-icon-free-vector.jpg"
         />
       </div>
+<<<<<<< HEAD
       <div className="inbox">
         <p>Inbox</p>
+=======
+      <div className="mrg-l-10p">
+        <p className="fontW-600">Inbox</p>
+>>>>>>> dev
         <Link
           onClick={allTasksHandler}
           to={'/app/all'}
+          className="bg-blue-7ef-hover dis-block width-100per"
         >All Tasks</Link>
       </div>
       <ul className="list-name">
