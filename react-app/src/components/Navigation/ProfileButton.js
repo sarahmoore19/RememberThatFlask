@@ -37,7 +37,7 @@ function ProfileButton({ user }) {
     history.push('/')
   };
 
-  const ulClassName = "pos-abs bg-white color-black pad10p boxS-0-0-3-black borderR-5p" + (showMenu ? "" : " hidden");
+  const ulClassName = "pos-abs right-0p bg-white color-black pad10p boxS-0-0-3-black borderR-5p" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (

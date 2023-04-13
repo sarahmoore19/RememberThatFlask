@@ -26,7 +26,7 @@ function LoginFormPage() {
 
   return (
     <div className="grid-1-1">
-      <div className="bg-blue-fcc color-white">
+      <div className="bg-blue-fcc color-white height-88vh">
         <blockquote>
           <p className="fontS-200rem fontW-600 width-max-450p mrg-lr-auto">
             "Hope you enjoy your journey with us"

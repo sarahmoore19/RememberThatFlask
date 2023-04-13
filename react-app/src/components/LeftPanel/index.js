@@ -31,16 +31,17 @@ function LeftPanel({setTD}) {
     <div>
       <div>
         <img
-          width='50px'
-          height='50px'
-          src="https://static.vecteezy.com/system/resources/previews/002/652/150/original/cute-deer-wild-animal-character-icon-free-vector.jpg"
+          width='70px'
+          height='70px'
+          src="http://clipart-library.com/img/709887.png"
         />
       </div>
-      <div className="border-red">
-        <p>Inbox</p>
+      <div className="mrg-l-10p">
+        <p className="fontW-600">Inbox</p>
         <Link
           onClick={allTasksHandler}
           to={'/app/all'}
+          className="bg-blue-7ef-hover dis-block width-100per"
         >All Tasks</Link>
       </div>
       <ul className="border-red">

@@ -103,11 +103,11 @@ function TaskList({ context, tD, setTD }) {
             <button
               className="height-26px bg-transp border-none"
               onClick={() => setCompleteContext(false)}
-            >Incomplete</button>
+            >To Do</button>
             <button
               className="height-26px bg-transp border-none"
               onClick={() => setCompleteContext(true)}
-            >Complete</button>
+            >Completed</button>
           </div>
         </div>
 
@@ -130,40 +130,33 @@ function TaskList({ context, tD, setTD }) {
           </div>
         </div>
 
-        <div className="outter3">
-          <ul>
-            <h1>{context == 'list' ? list.name + '-' : 'Tasks-'}</h1>
-            <h1>{completeContext ? 'completed' : 'incomplete'}</h1>
-            {tasksToSend.map(t => (
-              <>
-                <div className="border-style">
-                  <li
-                    onClick={() => handleTaskDetails(t.id)}
-                    key={t.id}>
-                    {t.name}
-                  </li>
-                  <OpenModalButton
-                    buttonText={<i class="fas fa-trash-alt"></i>}
-                    modalComponent={
-                      <DeleteModal
-                        listId={listId}
-                        query={query}
-                        setTD={setTD}
-                        action={deleteTaskContext}
-                        taskId={t.id} />}
-                  />
-                  <button
-                    onClick={() => changeCompleted(t.id)}
-                  >
-                    <i class="fas fa-check"></i>
-                  </button>
-                </div>
-              </>
-            ))}
-          </ul>
-        </div>
-
-
+        <ul>
+          <h1>{completeContext ? 'completed' : 'incomplete'}</h1>
+          {tasksToSend.map(t => (
+            <>
+              <li
+                onClick={() => handleTaskDetails(t.id)}
+                key={t.id}>
+                {t.name}
+              </li>
+              <OpenModalButton
+                buttonText={<i class="fas fa-trash-alt"></i>}
+                modalComponent={
+                  <DeleteModal
+                    listId={listId}
+                    query={query}
+                    setTD={setTD}
+                    action={deleteTaskContext}
+                    taskId={t.id} />}
+              />
+              <button
+                onClick={() => changeCompleted(t.id)}
+              >
+                <i class="fas fa-check"></i>
+              </button>
+            </>
+          ))}
+        </ul>
 
       </div>
 
@@ -176,7 +169,11 @@ function TaskList({ context, tD, setTD }) {
             setCurrTaskId={setCurrTaskId}
           />) : (
           <div className="border-red">
-            <h2>{context == 'list' ? list.name : 'Tasks'}</h2>
+            <h2>
+              {context == 'list' && list.name}
+              {context == 'allTasks' && 'All Tasks'}
+              {context == 'search' && 'Search Results'}
+            </h2>
             <div>
               <div>
                 <div>{nNC}</div>

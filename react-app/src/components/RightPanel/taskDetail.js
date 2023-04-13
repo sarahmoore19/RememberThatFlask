@@ -47,7 +47,7 @@ function TaskDetail({ query, currTaskId, setTD }) {
 
   return (
     <>
-      <div className="border-red">task details component {task.name}</div>
+      <h1 className="border-red">{task.name}</h1>
       <div>
         <input type="text" value={inputValue} onChange={handleInputChange} onBlur={handleOnBlur} />
       </div>
