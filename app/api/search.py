@@ -12,7 +12,7 @@ def allTasksSearch():
   args = request.args
   search = args.get("search", default="", type=str)
   tasks = (Task.query.filter(Task.user_id == id)
-  .filter(Task.name.like(f'%{search}%'))
+  .filter(Task.name.ilike(f'%{search}%'))
   .all())
   taskSearch = {}
   taskSearch['tasks'] = [task.to_dict() for task in tasks]

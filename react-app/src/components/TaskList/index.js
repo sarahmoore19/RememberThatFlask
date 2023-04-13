@@ -101,10 +101,10 @@ function TaskList({ context, tD, setTD }) {
         <div>
           <button
             onClick={() => setCompleteContext(false)}
-          >Incomplete</button>
+          >To Do</button>
           <button
             onClick={() => setCompleteContext(true)}
-          >Complete</button>
+          >Completed</button>
         </div>
 
         <div>
@@ -123,7 +123,7 @@ function TaskList({ context, tD, setTD }) {
         </div>
 
         <ul>
-          <h1>{completeContext ? 'completed' : 'incomplete'}</h1>
+          <h1>{completeContext ? 'Completed' : 'To Do'}</h1>
           {tasksToSend.map(t => (
             <>
               <li
@@ -161,7 +161,11 @@ function TaskList({ context, tD, setTD }) {
             setCurrTaskId={setCurrTaskId}
           />) : (
           <div className="border-red">
-            <h2>{context == 'list' ? list.name : 'Tasks'}</h2>
+            <h2>
+            {context == 'list' && list.name}
+            {context == 'allTasks' && 'All Tasks'}
+            {context == 'search' && 'Search Results'}
+            </h2>
             <div>
               <div>
                 <div>{nNC}</div>
