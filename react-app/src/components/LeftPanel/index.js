@@ -7,6 +7,8 @@ import OpenModalButton from '../OpenModalButton';
 import ListModal from '../ListModal';
 import DeleteModal from '../DeleteModal'
 
+import './leftPanel.css'
+
 function LeftPanel({setTD}) {
 
   const dispatch = useDispatch();
@@ -28,12 +30,12 @@ function LeftPanel({setTD}) {
   }
 
   return (
-    <div>
-      <div>
+    <div className='left-panel'>
+      <div className='icon'>
         <img
-          width='50px'
-          height='50px'
-          src="https://static.vecteezy.com/system/resources/previews/002/652/150/original/cute-deer-wild-animal-character-icon-free-vector.jpg"
+          width='70px'
+          height='70px'
+          src="http://clipart-library.com/img/709887.png"
         />
       </div>
       <div className="mrg-l-10p">
@@ -44,34 +46,40 @@ function LeftPanel({setTD}) {
           className="bg-blue-7ef-hover dis-block width-100per"
         >All Tasks</Link>
       </div>
-      <ul className="border-red">
-        <li><OpenModalButton
-          id='id'
-          buttonText={<i class="fas fa-plus"></i>}
-          modalComponent={<ListModal action="create" />}
-        /></li>
-        <li>List</li>
+      <ul className="list-name">
+        <li className = 'list-create'>
+          <div>List</div>
+          <div><OpenModalButton
+            id='id'
+            buttonText={<i class="fas fa-plus"></i>}
+            modalComponent={<ListModal action="create" />}
+          /></div>
+        </li>
         {arr.map(o => (
           <li
+            className='one-list'
             key={o.id}>
-            <Link
-              onClick={() => singleTaskHandler(o.id)}
-              to={`/app/lists/${o.id}`}
-            >
-              {o.name}
-            </Link>
-            <OpenModalButton
-              buttonText={<i class="fas fa-trash-alt"></i>}
-              modalComponent={
-              <DeleteModal
-              action='list'
-              listId={o.id} />}
-            />
-            <OpenModalButton
-              id='id'
-              buttonText={<i class="fas fa-edit"></i>}
-              modalComponent={<ListModal action="rename" listId={o.id} />}
-            />
+            <div>
+              <Link
+                onClick={() => singleTaskHandler(o.id)}
+                to={`/app/lists/${o.id}`}
+              >
+                {o.name}
+              </Link>
+            </div>
+            <div className='list-button'>
+              <OpenModalButton
+                buttonText={<i class="fas fa-trash-alt"></i>}
+                modalComponent={
+                <DeleteModal
+                action='list'
+                listId={o.id} />}
+              />
+              <OpenModalButton
+                buttonText={<i class="fas fa-edit"></i>}
+                modalComponent={<ListModal action="rename" listId={o.id} />}
+              />
+            </div>
           </li>
         ))}
       </ul>

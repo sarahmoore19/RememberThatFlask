@@ -78,7 +78,7 @@ function LoginFormPage() {
               setPassword('password');
             }}
             className="bg-blue-dff color-white cursor-p border-0 pad-tb-10p fontS-115rem borderR-5p">
-              Log in as Demo User
+            Log in as Demo User
           </button>
         </form>
       </div>
