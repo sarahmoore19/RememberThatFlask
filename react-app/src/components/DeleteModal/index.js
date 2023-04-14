@@ -16,7 +16,8 @@ function DeleteModal({ query, listId, action, taskId, setTD }) {
     e.preventDefault()
 
     if (action == 'list') {
-      dispatch(listActions.deleteList(listId))
+      await dispatch(listActions.deleteList(listId))
+      await dispatch(taskActions.allTasks())
       history.push('/app/all')
     }
 
