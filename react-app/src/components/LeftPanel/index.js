@@ -6,6 +6,7 @@ import * as listActions from '../../store/lists';
 import OpenModalButton from '../OpenModalButton';
 import ListModal from '../ListModal';
 import DeleteModal from '../DeleteModal'
+import logo from './logo.png';
 
 import './leftPanel.css'
 
@@ -34,8 +35,8 @@ function LeftPanel({setTD}) {
       <div className='icon flx gap15p'>
         <img
           width='64px'
-          height='80px'
-          src="http://clipart-library.com/img/709887.png"
+          height='64px'
+          src={logo}
         />
         <div className="fontS-175rem">Remember That Flask</div>
       </div>

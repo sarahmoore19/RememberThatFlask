@@ -1,4 +1,5 @@
 import React from "react";
+import logo from '../LeftPanel/logo.png'
 
 function HomePage() {
 
@@ -33,7 +34,7 @@ function HomePage() {
       <div id="about" className="bg-white">
         <div className="width-max-700p grid-2-8 mrg-lr-auto">
           <div className="flx flx-ai-center">
-            <img src="http://clipart-library.com/img/709887.png"
+            <img src={logo}
               width='80px' height='100px'/>
           </div>
           <div>
