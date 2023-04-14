@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink, useHistory } from 'react-router-dom';
+import React from "react";
+import { useHistory } from 'react-router-dom';
 import * as listActions from '../../store/lists';
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
