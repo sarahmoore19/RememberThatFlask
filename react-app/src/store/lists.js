@@ -68,7 +68,6 @@ export const createlist = (formData) => async (dispatch) => {
 		},
     body: JSON.stringify(formData)
   })
-  console.log(response)
   if (response.ok) {
     const data = await response.json();
     dispatch(createList1(data));
@@ -98,9 +97,7 @@ export const deleteList = (listId) => async (dispatch) => {
   const response = await fetch(`/api/lists/${listId}`, {
     method: 'DELETE'
   })
-  console.log('thunk being called')
   if (response.ok) {
-  console.log('response ok')
     const data = await response.json();
     dispatch(deleteList1(listId));
   };
