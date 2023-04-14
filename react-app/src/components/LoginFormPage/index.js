@@ -12,7 +12,7 @@ function LoginFormPage() {
   const [errors, setErrors] = useState([]);
   let history = useHistory();
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/app/all" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

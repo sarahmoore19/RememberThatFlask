@@ -11,7 +11,6 @@ const setSearchResults = (obj) => {
   const response = await fetch(`/api/search?search=${query}`)
   if (response.ok) {
     const data = await response.json();
-    console.log(data)
     dispatch(setSearchResults(data));
   };
   return response
