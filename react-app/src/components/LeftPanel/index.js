@@ -31,12 +31,13 @@ function LeftPanel({setTD}) {
 
   return (
     <div className='left-panel'>
-      <div className='icon'>
+      <div className='icon flx gap15p'>
         <img
-          width='70px'
-          height='70px'
+          width='64px'
+          height='80px'
           src="http://clipart-library.com/img/709887.png"
         />
+        <div className="fontS-175rem">Remember That Flask</div>
       </div>
       <div className="mrg-l-10p">
         <p className="fontW-600">Inbox</p>

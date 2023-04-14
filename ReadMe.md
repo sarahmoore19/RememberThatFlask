@@ -44,7 +44,7 @@ You can create/rename/update/delete lists and create/update/delete tasks.
    ```bash
    pipenv run flask run
    ```
-7. cd into the ```react-app``` directory and install dependencies for React frontend
+7. In another terminal, cd into the ```react-app``` directory and install dependencies for React frontend
 
       ```bash
       npm install

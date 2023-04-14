@@ -43,7 +43,7 @@ function LoginFormPage() {
           <h3>Been here before? Welcome back!</h3>
         </div>
         <form onSubmit={handleSubmit} className="flx-col flx-wrap flx-ac-center gap15p">
-          <ul>
+          <ul className="color-red fontS-115rem">
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}
