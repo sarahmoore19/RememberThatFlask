@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { Route, StaticRouter, Switch } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import * as taskActions from '../../store/tasks'
 import * as listActions from '../../store/lists';
@@ -96,43 +95,53 @@ function TaskList({ context, tD, setTD }) {
   }
 
   return (
-    <div className="border-red grid-1-1">
-      <div id="allpanel">
+    <div
+    className="grid-1-1">
+      <div
+      className="border-left-black"
+      id="allpanel">
         <div id="outter1">
           <div className="status">
             <button
-              className="height-26px bg-transp border-none"
+              className=" border-bottom-black border-left-black complete-button bg-blue-dff height-26px bg-transp fontS-115rem"
               onClick={() => setCompleteContext(false)}
             >To Do</button>
             <button
-              className="height-26px bg-transp border-none"
+              className=" border-bottom-black border-left-black complete-button bg-blue-dff height-26px bg-transp fontS-115rem"
               onClick={() => setCompleteContext(true)}
             >Completed</button>
           </div>
         </div>
 
-        <div id="outter2">
-          <div className="addtaskbar">
-            <form
-              onSubmit={createTask}>
+        <div
+        className="padding-left-13px padding-top-13px"
+        id="outter2">
+
+          <form
+            className="width-387p"
+            onSubmit={createTask}>
+            <div className="flx">
               <input
+                className="width-70"
                 value={newTaskName}
                 onChange={(e) => setNewTaskName(e.target.value)}
                 required
                 placeholder="New Task Name" />
               <button
                 type='submit'
-                className="height-26px"
+                className="height-26px width-30"
               >
                 Add Task
               </button>
-            </form>
-          </div>
+            </div>
+          </form>
+
         </div>
 
-        <div id="outter3">
+        <div
+        id="outter3">
           <ul>
-            <h1>{completeContext ? 'Completed' : 'To Do'}</h1>
+            <h1 className="fontS-115rem">{completeContext ? 'Completed' : 'To Do'}</h1>
 
             {tasksToSend.map(t => (
               <>
@@ -156,7 +165,17 @@ function TaskList({ context, tD, setTD }) {
                   <button
                     onClick={() => changeCompleted(t.id)}
                   >
-                    <i class="fas fa-check"></i>
+                    {t.completed ?
+                      <div className="tooltip">
+                        <i class="fas fa-times"></i>
+                        <span className="tooltiptext">Revert to ToDo</span>
+                      </div>
+                      :
+                      <div className="tooltip">
+                        <i class="fas fa-check"></i>
+                        <span className="tooltiptext">Complete</span>
+                      </div>
+                    }
                   </button>
                 </div>
               </>
@@ -166,7 +185,7 @@ function TaskList({ context, tD, setTD }) {
 
       </div>
 
-      <div className="border-blue">
+      <div className="border-left-black">
         {tD ? (
           <TaskDetail
             query={query}
@@ -174,21 +193,31 @@ function TaskList({ context, tD, setTD }) {
             currTaskId={currTaskId}
             setCurrTaskId={setCurrTaskId}
           />) : (
-          <div className="border-red">
+          <div
+          className="summary">
             <h2>
               {context == 'list' && list.name}
               {context == 'allTasks' && 'All Tasks'}
               {context == 'search' && 'Search Results'}
             </h2>
-            <div>
-              <div>
-                <div>{nNC}</div>
-                <div>tasks</div>
-              </div>
-              <div>
-                <div>{nC}</div>
-                <div>completed</div>
-              </div>
+            <div
+            className="numContainer"
+            >
+              <span
+              className="numCon"
+              >
+                <div
+                className="num"
+                >{nNC}</div>
+                <div>Incomplete</div>
+              </span>
+              <span
+              className="numCon">
+                <div
+                className="num"
+                >{nC}</div>
+                <div>Complete</div>
+              </span>
             </div>
           </div>
         )}

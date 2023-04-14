@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as taskActions from '../../store/tasks'
@@ -31,12 +31,13 @@ function LeftPanel({setTD}) {
 
   return (
     <div className='left-panel'>
-      <div className='icon'>
+      <div className='icon flx gap15p'>
         <img
-          width='70px'
-          height='70px'
+          width='64px'
+          height='80px'
           src="http://clipart-library.com/img/709887.png"
         />
+        <div className="fontS-175rem">Remember That Flask</div>
       </div>
       <div className="mrg-l-10p">
         <p className="fontW-600">Inbox</p>
@@ -57,7 +58,7 @@ function LeftPanel({setTD}) {
         </li>
         {arr.map(o => (
           <li
-            className='one-list'
+          className='one-list bg-blue-7ef-hover'
             key={o.id}>
             <div>
               <Link

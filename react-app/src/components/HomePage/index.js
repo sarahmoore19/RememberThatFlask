@@ -32,48 +32,59 @@ function HomePage() {
       </div>
       <div id="about" className="bg-white">
         <div className="width-max-700p grid-2-8 mrg-lr-auto">
-          <div></div>
+          <div className="flx flx-ai-center">
+            <img src="http://clipart-library.com/img/709887.png"
+              width='80px' height='100px'/>
+          </div>
           <div>
-            <h3 className="fontS-175rem">Developers</h3>
+            <h3 className="fontS-175rem color-gray-b94 fontF-hel">Developers</h3>
             <div className="flx gap15p fontS-125rem">
-              Dongliang Li
-              <a href="https://github.com/dongliang09" target="_blank">
+              <div className="width-750rem ">Dongliang Li</div>
+              <a href="https://github.com/dongliang09" target="_blank"
+                className="color-gray-ec1 color-black-hover">
                 <i class="fab fa-github"></i>
               </a>
-              <a href="https://www.linkedin.com/in/dongliang-li-a9ab038a/" target="_blank">
+              <a href="https://www.linkedin.com/in/dongliang-li-a9ab038a/" target="_blank"
+                className="color-gray-ec1 color-blue-0bf-hover" >
                 <i class="fab fa-linkedin"></i>
               </a>
             </div>
             <div className="flx gap15p fontS-125rem">
-              Sarah Moore
-              <a href="https://github.com/sarahmoore19" target="_blank">
+              <div className="width-750rem">Sarah Moore</div>
+              <a href="https://github.com/sarahmoore19" target="_blank"
+                className="color-gray-ec1 color-black-hover">
                 <i class="fab fa-github"></i>
               </a>
-              <a href="https://www.linkedin.com/in/sarah-moore-747946259" target="_blank">
+              <a href="https://www.linkedin.com/in/sarah-moore-747946259" target="_blank"
+                className="color-gray-ec1 color-blue-0bf-hover">
                 <i class="fab fa-linkedin"></i>
               </a>
             </div>
             <div className="flx gap15p fontS-125rem">
-              Seng Wang
-              <a href="https://github.com/Wang55566" target="_blank">
+              <div className="width-750rem">Seng Wang</div>
+              <a href="https://github.com/Wang55566" target="_blank"
+                className="color-gray-ec1 color-black-hover">
                 <i class="fab fa-github"></i>
               </a>
-              <a href="https://www.linkedin.com/in/seng-wang-142a5a149/" target="_blank">
+              <a href="https://www.linkedin.com/in/seng-wang-142a5a149/" target="_blank"
+                className="color-gray-ec1 color-blue-0bf-hover">
                 <i class="fab fa-linkedin"></i>
               </a>
             </div>
             <div className="flx gap15p fontS-125rem">
-              Penny Wang
-              <a href="https://github.com/pennywangpw" target="_blank">
+              <div className="width-750rem">Penny Wang</div>
+              <a href="https://github.com/pennywangpw" target="_blank"
+                className="color-gray-ec1 color-black-hover">
                 <i class="fab fa-github"></i>
               </a>
-              <a href="https://www.linkedin.com/in/yi-ping-penny-wang-40654114b/" target="_blank">
+              <a href="https://www.linkedin.com/in/yi-ping-penny-wang-40654114b/" target="_blank"
+                className="color-gray-ec1 color-blue-0bf-hover">
                 <i class="fab fa-linkedin"></i>
               </a>
             </div>
           </div>
         </div>
-        <div className="flx-jc-center mrg-lr-auto">@ 2023 Remember That Flask</div>
+        <div className="flx-jc-center mrg-lr-auto pad-tb-25p">@ 2023 Remember That Flask</div>
       </div>
     </div>
   )

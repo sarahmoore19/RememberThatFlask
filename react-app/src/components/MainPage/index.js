@@ -7,7 +7,7 @@ function MainPage() {
   const [tD, setTD] = useState(false)
 
   return (
-    <div className="flx bg-blue-7f5 grid-2-8">
+    <div className="flx bg-blue-7f5 grid-2-8 height-88vh">
       <LeftPanel
       setTD={setTD}
       />

@@ -20,12 +20,9 @@ function Navigation({ isLoaded }){
 	return (
 		<div className='pad-tb-25p color-white bg-blue-0bf'>
 				{isLoaded && !sessionUser && (
-					<ul className='flx-jc-sa mrg20p '>
-					<li>
-						<NavLink exact to="/" className={"color-white-ef2 fontS-125rem"}>Home</NavLink>
-					</li>
+					<ul className='flx-jc-fe mrg20p '>
 					<li className='flx gap15p'>
-						<a href="#about" className="color-white-ef2 fontS-125rem">
+						<a href="/#about" className="color-white-ef2 fontS-125rem">
 							About
 						</a>
 						<div>
@@ -45,11 +42,11 @@ function Navigation({ isLoaded }){
 				{isLoaded && sessionUser && (
 					<div className='flx-jc-sb mrg-l-7rem mrg-r-3rem'>
 						<Link
-						className='color-white fontS-200rem'
+						className='color-white-ef2 fontS-125rem va-center'
 						to='/'
 						>Home</Link>
 						<Link
-						className='color-white fontS-200rem'
+						className='color-white-ef2 fontS-125rem va-center'
 						to='/app/all'
 						>Dashboard</Link>
 						<div className='flx'>

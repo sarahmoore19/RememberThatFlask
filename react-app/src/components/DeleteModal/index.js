@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink, useHistory } from 'react-router-dom';
+import React from "react";
+import { useHistory } from 'react-router-dom';
 import * as listActions from '../../store/lists';
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -36,13 +36,16 @@ function DeleteModal({ query, listId, action, taskId, setTD }) {
   };
 
   return (
-    <div>
-        {action === 'list' ? <h2>Remove List?</h2> : <h2>Remove Task?</h2>}
-        <button onClick={handleSubmit}>
-          Yes
+    <div className="pad-tb-10p pad-lr-150rem">
+        {action === 'list' ? <h2>Remove List</h2> : <h2>Remove Task</h2>}
+        <p>Are you sure you wish to remove {action === 'list' ? 'list' : 'task'}?</p>
+        <button onClick={handleSubmit}
+          className="bg-blue-dff color-white border-0 pad-lr-150rem pad-tb-10p mrg-r-8p borderR-5p">
+          Yes, remove {action === 'list' ? 'list' : 'task'}
         </button>
         <button
-        onClick={closeModal}>
+        onClick={closeModal}
+        className="border-0 color-blue-dff-hover pad-lr-150rem pad-tb-10p borderR-5p">
           No
         </button>
     </div>

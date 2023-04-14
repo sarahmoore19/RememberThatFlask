@@ -1,7 +1,7 @@
 /*============= id ============*/
-#outter2 {
+/* #outter2 {
     text-align: center;
-}
+} */
 
 #allpanel {
     display: grid;
@@ -17,17 +17,13 @@
     height: 26px;
 }
 
-.addtaskbar {
-    display: inline-flex;
-}
+
 
 .height-26px {
     height: 26px;
 }
 
-.border-none {
-    border: none;
-}
+
 
 .border-none:hover {
     background-color: var(--blue-0bf);
@@ -42,6 +38,19 @@
 }
 
 
+.width-387p {
+    width: 387px;
+}
+
+
+.width-70 {
+    width: 70%;
+}
+
+.width-30 {
+    width: 30%;
+}
+
 /*============ html tag =============*/
 
 
@@ -49,4 +58,29 @@
 ul {
     padding: 5px;
     margin: 1px 8px;
+}
+
+.complete-button {
+    border: none;
+}
+
+.summary {
+    margin: 20px;
+}
+
+.numContainer {
+    display: flex;
+}
+
+.numCon {
+  width: 75px;
+  margin-right: 10px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.num {
+  font-size: 20px;
+  font-weight: bold;
 }
