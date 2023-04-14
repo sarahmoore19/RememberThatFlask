@@ -24,9 +24,9 @@ function HomePage() {
         <div className="pad-t-4rem">
           <img src="https://www.rememberthemilk.com/img/hp_steve_2.png?1663390145" alt="a person" />
         </div>
-        <div className="color-white txt-ali-center">
+        <div className="color-white txt-ali-center pad-tb-15p">
           <h1>Get reminded, from here now</h1>
-          <p className="">
+          <p className="width-max-250p fontS-115rem mrg-lr-auto">
             Stop thinking about to-dos, and let the app remember for you.
           </p>
         </div>

@@ -12,7 +12,6 @@ function DeleteModal({ query, listId, action, taskId, setTD }) {
   const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
-    console.log(action)
     e.preventDefault()
 
     if (action == 'list') {
