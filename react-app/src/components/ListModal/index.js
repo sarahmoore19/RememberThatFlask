@@ -2,26 +2,28 @@ import React, { useState } from "react";
 import * as listActions from '../../store/lists';
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { useHistory } from "react-router-dom";
 
 function ListModal({ action, listId }) {
   const dispatch = useDispatch();
   const [listName, setListName] = useState("");
-  const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
+  const history = useHistory()
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setErrors([]);
     if(action == "create") {
       return dispatch(listActions.createlist(
         { name: listName }
       ))
         .then(closeModal)
+        .then(history.push('/app/all'))
     }
 
     else if(action=="rename") {
       return dispatch(listActions.renameList(listId, { name: listName }))
       .then(closeModal)
+      .then(history.push('/app/all'))
     }
 
   };
