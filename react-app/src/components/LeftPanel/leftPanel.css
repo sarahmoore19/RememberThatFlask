@@ -23,6 +23,11 @@ ul.list-name {
   margin-right: 15px
 }
 
+.list-button {
+  display: flex;
+  flex-wrap: no wrap;
+}
+
 @media screen and (max-width: 950px) {
   .one-list {
     display: block;

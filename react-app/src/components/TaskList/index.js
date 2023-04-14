@@ -156,7 +156,7 @@ function TaskList({ context, tD, setTD }) {
                   <button
                     onClick={() => changeCompleted(t.id)}
                   >
-                    <i class="fas fa-check"></i>
+                    {t.completed ? <i class="fas fa-times"></i>: <i class="fas fa-check"></i>}
                   </button>
                 </div>
               </>
