@@ -35,7 +35,8 @@ function TaskDetail({ query, currTaskId, setTD }) {
   }
 
   const handleListChange = async (e) => {
-    await dispatch(taskActions.updateTaskList(task.id, {listId: e.target.value}))
+    if (e.target.value == 'Inbox') await dispatch(taskActions.updateTaskList(task.id, {listId: null}))
+    else await dispatch(taskActions.updateTaskList(task.id, {listId: e.target.value}))
     if (list) await dispatch(listActions.singleList(list.id))
     setTD(false)
   }
@@ -69,7 +70,7 @@ function TaskDetail({ query, currTaskId, setTD }) {
         <select
         onChange={handleListChange}>
           <option></option>
-          <option value={null}>Inbox</option>
+          <option value={undefined}>Inbox</option>
           {lists.map(l => (
           <option value={l.id}>{l.name}</option>
           ))}
