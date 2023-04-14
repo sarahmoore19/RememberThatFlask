@@ -363,6 +363,10 @@ li {
   max-width: 700px;
 }
 
+.width-max-750rem {
+  max-width: 7.5rem;
+}
+
 .width-750rem {
   width: 7.5rem;
 }

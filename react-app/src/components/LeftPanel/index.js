@@ -38,7 +38,7 @@ function LeftPanel({setTD}) {
           height='64px'
           src={logo}
         />
-        <div className="fontS-175rem">Remember That Flask</div>
+        <div className="fontS-175rem width-max-750rem">Remember That Flask</div>
       </div>
       <div className="mrg-l-10p">
         <p className="fontW-600">Inbox</p>
