@@ -101,38 +101,42 @@ function TaskList({ context, tD, setTD }) {
         <div id="outter1">
           <div className="status">
             <button
-              className="height-26px bg-transp border-none"
+              className="height-26px bg-transp fontS-115rem"
               onClick={() => setCompleteContext(false)}
             >To Do</button>
             <button
-              className="height-26px bg-transp border-none"
+              className="height-26px bg-transp fontS-115rem"
               onClick={() => setCompleteContext(true)}
             >Completed</button>
           </div>
         </div>
 
         <div id="outter2">
-          <div className="addtaskbar">
-            <form
-              onSubmit={createTask}>
+
+          <form
+            className="width-400p"
+            onSubmit={createTask}>
+            <div className="flx">
               <input
+                className="width-70"
                 value={newTaskName}
                 onChange={(e) => setNewTaskName(e.target.value)}
                 required
                 placeholder="New Task Name" />
               <button
                 type='submit'
-                className="height-26px"
+                className="height-26px width-30"
               >
                 Add Task
               </button>
-            </form>
-          </div>
+            </div>
+          </form>
+
         </div>
 
         <div id="outter3">
           <ul>
-            <h1>{completeContext ? 'Completed' : 'To Do'}</h1>
+            <h1 className="fontS-115rem">{completeContext ? 'Completed' : 'To Do'}</h1>
 
             {tasksToSend.map(t => (
               <>
