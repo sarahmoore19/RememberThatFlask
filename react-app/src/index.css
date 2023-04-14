@@ -8,6 +8,8 @@
   --blue-ecc: #007ecc;
   --blue-0cc: #3380cc;
   --gray-9d9: #d9d9d9;
+  --gray-ec1: #bdbec1;
+  --gray-b94: #8b8b94;
   --white-ef2: #cadef2;
 
 }
@@ -21,6 +23,12 @@ a:link { text-decoration: none; }
 li {
   list-style-type: none;
 }
+
+#modal-content {
+  border-radius: 5px;
+}
+
+
 /*============= className ============*/
 .bg-blue-0bf {
   background-color: var(--blue-0bf);
@@ -111,8 +119,32 @@ li {
   color: var(--gray-9d9)
 }
 
+.color-gray-ec1 {
+  color: var(--gray-ec1)
+}
+
+.color-gray-b94 {
+  color: var(--gray-b94)
+}
+
 .color-black {
-  color: black
+  color: black;
+}
+
+.color-black-hover:hover {
+  color: black;
+}
+
+.color-red {
+  color: red;
+}
+
+.color-blue-dff-hover:hover {
+  color: var(--blue-dff);
+}
+
+.color-blue-0bf-hover:hover {
+  color: var(--blue-0bf);
 }
 
 .cursor-p:hover {
@@ -167,6 +199,10 @@ li {
 
 .flx-wrap {
   flex-wrap: wrap;
+}
+
+.fontF-hel{
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .fontS-115rem {
@@ -262,6 +298,11 @@ li {
   padding-right: 10px;
 }
 
+.pad-lr-150rem {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .pad-t-4rem {
   padding-top: 4rem;
 }
@@ -320,6 +361,10 @@ li {
 
 .width-max-700p {
   max-width: 700px;
+}
+
+.width-750rem {
+  width: 7.5rem;
 }
 
 .width-fit {

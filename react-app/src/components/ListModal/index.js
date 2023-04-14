@@ -27,11 +27,14 @@ function ListModal({ action, listId }) {
   };
 
   return (
-    <div className='new-list-form'>
+    <div className='new-list-form pad-tb-10p pad-lr-150rem'>
       {action == "create" ? <h1>Add a List</h1> : <h1>Rename List</h1>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}
+        className="flx-col">
         {action == "create" ? (<label>
-          Please enter a new list name:
+          <div>
+            Please enter a new list name:
+          </div>
           <input
             type="text"
             value={listName}
@@ -50,9 +53,15 @@ function ListModal({ action, listId }) {
           </label>)
         }
 
-        {action == "create" ? <button type="submit">Add</button> : <button type="submit">Save</button>}
-
-        <button onClick={closeModal}>Cancel</button>
+        <div className="pad-tb-10p">
+          <button type="submit"
+            className="bg-blue-dff color-white border-0 pad-lr-150rem pad-tb-10p mrg-r-8p borderR-5p">
+              {action == "create" ? "Add" : "Save"}
+          </button>
+          <button onClick={closeModal}
+            className="border-0 color-blue-dff-hover pad-lr-150rem pad-tb-10p borderR-5p">
+              Cancel</button>
+        </div>
       </form>
     </div>
   );
