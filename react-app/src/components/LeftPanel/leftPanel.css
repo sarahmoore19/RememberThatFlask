@@ -17,6 +17,7 @@ ul.list-name {
   flex-wrap: no wrap;
   justify-content: space-between;
   margin-top: 12px;
+  word-break: break-all;
 }
 
 .one-list a {
