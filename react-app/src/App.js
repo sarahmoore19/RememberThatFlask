@@ -33,6 +33,11 @@ function App() {
           <Route path={["/app", '/app/all']}>
             <MainPage />
           </Route>
+          <Route>
+            <h1>
+              Page not found. Please go to Home or Dashboard
+            </h1>
+          </Route>
         </Switch>
       )}
     </>

@@ -14,7 +14,6 @@ def allLists():
   listsList = [list.to_dict() for list in lists]
   return listsList
 
-
 # get a single list (with tasks) and numCompleted/numNotCompleted
 @lists.route('/<int:id>')
 @login_required
@@ -45,7 +44,6 @@ def createList():
     db.session.commit()
     return new_list.to_dict()
   return "Bad Data"
-
 
 # rename a list
 @lists.route('/<int:id>', methods=['PUT'])
