@@ -128,6 +128,7 @@ function TaskList({ context, tD, setTD }) {
                 required
                 placeholder="New Task Name" />
               <button
+                disabled={!newTaskName.replace(/\s/g, '').length || newTaskName.length > 60}
                 type='submit'
                 className="height-26px width-30"
               >
@@ -147,7 +148,7 @@ function TaskList({ context, tD, setTD }) {
               <>
                 <div className="border-style">
                   <li
-                    className="bg-blue-7ef-hover"
+                    className="taskName bg-blue-7ef-hover"
                     onClick={() => handleTaskDetails(t.id)}
                     key={t.id}>
                     {t.name}

@@ -84,3 +84,17 @@ ul {
   font-size: 20px;
   font-weight: bold;
 }
+
+.taskName {
+    word-break: break-all;
+}
+
+.createListButton:disabled {
+    cursor: unset;
+    background-color: lightgray;
+}
+
+.createListButton:disabled:hover {
+    cursor: unset;
+    background-color: lightgray;
+}

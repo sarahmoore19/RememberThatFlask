@@ -34,10 +34,8 @@ function ListModal({ action, listId }) {
       <form onSubmit={handleSubmit}
         className="flx-col">
         {action == "create" ? (<label>
-          <div>
-            Please enter a new list name:
-          </div>
           <input
+          placeholder="New List Name"
             type="text"
             value={listName}
             onChange={(e) => setListName(e.target.value)}
@@ -45,8 +43,8 @@ function ListModal({ action, listId }) {
           />
         </label>) :
           (<label>
-            List name:
             <input
+              placeholder="List Name"
               type="text"
               value={listName}
               onChange={(e) => setListName(e.target.value)}
@@ -56,8 +54,10 @@ function ListModal({ action, listId }) {
         }
 
         <div className="pad-tb-10p">
-          <button type="submit"
-            className="bg-blue-dff color-white border-0 pad-lr-150rem pad-tb-10p mrg-r-8p borderR-5p">
+          <button
+          disabled={!listName.replace(/\s/g, '').length || listName.length > 60}
+          type="submit"
+          className="createListButton bg-blue-dff color-white border-0 pad-lr-150rem pad-tb-10p mrg-r-8p borderR-5p">
               {action == "create" ? "Add" : "Save"}
           </button>
           <button onClick={closeModal}
